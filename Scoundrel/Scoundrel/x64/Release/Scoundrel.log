@@ -1,0 +1,26 @@
+﻿  main.cpp
+C:\Users\jimmy\Desktop\CTP_S Code\Scoundrel\Scoundrel\main.cpp(15,27): warning C4834: discarding return value of function with 'nodiscard' attribute
+C:\Users\jimmy\Desktop\CTP_S Code\Scoundrel\Scoundrel\main.cpp(18,23): warning C4834: discarding return value of function with 'nodiscard' attribute
+C:\Users\jimmy\Desktop\CTP_S Code\Scoundrel\Scoundrel\main.cpp(25,81): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+          and
+          [
+              T=float
+          ]
+C:\Users\jimmy\Desktop\CTP_S Code\Scoundrel\Scoundrel\main.cpp(25,55): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+          and
+          [
+              T=float
+          ]
+  Generating code
+  Previous IPDB not found, fall back to full compilation.
+  All 264 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  Finished generating code
+  Scoundrel.vcxproj -> C:\Users\jimmy\Desktop\CTP_S Code\Scoundrel\x64\Release\Scoundrel.exe
