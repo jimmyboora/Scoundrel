@@ -3,6 +3,7 @@
 #include "Spade.hpp"
 #include "Club.hpp"
 #include "Heart.hpp"
+#include "ScreenButton.hpp"
 
 
 int main()
@@ -11,6 +12,13 @@ int main()
     sf::RenderWindow window(sf::VideoMode({ 1920, 1080 }), "SFML works!");
     sf::CircleShape shape(100.f);
     shape.setFillColor(sf::Color::Green);
+
+    // Tester code for button
+    sf::Texture startButtonTexture;
+    startButtonTexture.loadFromFile("2_of_Diamonds.jpg");
+    ScreenButton testButton(startButtonTexture);
+    testButton.getSprite().setPosition(sf::Vector2f(300, 300));
+    testButton.activate();
 
 
 
@@ -66,6 +74,9 @@ int main()
         //window.draw(tester4);
         //window.draw(tester5);
         //window.draw(tester6);
+
+        // Testing the button
+        testButton.updateScreenButton(window);
 
         window.display();
     }
