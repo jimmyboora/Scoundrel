@@ -26,6 +26,15 @@
     <ClInclude Include="Diamond.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Spade.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Club.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Heart.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="2_of_Diamonds.jpg">

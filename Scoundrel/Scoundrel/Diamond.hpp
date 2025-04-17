@@ -12,6 +12,9 @@ public:
 	char getvalue() override;
 	char getsuit() override;
 
+	void setValue(char newValue) override;
+	void setSuit(char newSuit) override;
+
 private:
 
 };
@@ -39,4 +42,12 @@ inline char Diamond::getsuit()
 	return suit;
 }
 
+inline void Diamond::setValue(char newValue)
+{
+	this->value = newValue;
+}
 
+inline void Diamond::setSuit(char newSuit)
+{
+	this->suit = newSuit;
+}

@@ -17,6 +17,9 @@ public:
 	virtual char getvalue() = 0;
 	virtual char getsuit() = 0;
 
+	virtual void setValue(char newValue);
+	virtual void setSuit(char newSuit);
+
 protected:
 	char value;
 	char suit;
@@ -28,4 +31,14 @@ inline Card::Card()
 	this->setSize(sf::Vector2f(1000.f, 1500.f));
 	value = 0;
 	suit = 0;
+}
+
+inline void Card::setValue(char newValue)
+{
+	value = newValue;
+}
+
+inline void Card::setSuit(char newSuit)
+{
+	suit = newSuit;
 }

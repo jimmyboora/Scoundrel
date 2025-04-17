@@ -1,5 +1,8 @@
-
-#include "diamond.hpp"
+#include "Card.hpp"
+#include "Diamond.hpp"
+#include "Spade.hpp"
+#include "Club.hpp"
+#include "Heart.hpp"
 
 
 int main()
@@ -31,10 +34,6 @@ int main()
             if (event->is<sf::Event::Closed>())
                 window.close();
         }
-
-
-
-
 
         window.clear();
         window.draw(bgSprite);
