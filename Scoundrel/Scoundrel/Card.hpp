@@ -27,7 +27,7 @@ public:
 	void printCard() const;
 
 protected:
-	string  value;
+	string value;
 	string suit;
 
 };

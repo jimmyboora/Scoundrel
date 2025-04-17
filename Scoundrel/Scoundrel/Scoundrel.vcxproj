@@ -156,10 +156,53 @@
     <ClInclude Include="Spade.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="10_of_Clubs.jpg" />
+    <Image Include="10_of_Diamonds.jpg" />
+    <Image Include="10_of_Hearts.jpg" />
+    <Image Include="10_of_Spades.jpg" />
+    <Image Include="2_of_Clubs.jpg" />
     <Image Include="2_of_Diamonds.jpg" />
+    <Image Include="2_of_Hearts.jpg" />
+    <Image Include="2_of_Spades.jpg" />
+    <Image Include="3_of_Clubs.jpg" />
+    <Image Include="3_of_Diamonds.jpg" />
+    <Image Include="3_of_Hearts.jpg" />
+    <Image Include="3_of_Spades.jpg" />
+    <Image Include="4_of_Clubs.jpg" />
+    <Image Include="4_of_Diamonds.jpg" />
+    <Image Include="4_of_Hearts.jpg" />
+    <Image Include="4_of_Spades.jpg" />
+    <Image Include="5_of_Clubs.jpg" />
+    <Image Include="5_of_Diamonds.jpg" />
+    <Image Include="5_of_Hearts.jpg" />
+    <Image Include="5_of_Spades.jpg" />
+    <Image Include="6_of_Clubs.jpg" />
+    <Image Include="6_of_Diamonds.jpg" />
+    <Image Include="6_of_Hearts.jpg" />
+    <Image Include="6_of_Spades.jpg" />
+    <Image Include="7_of_Clubs.jpg" />
+    <Image Include="7_of_Diamonds.jpg" />
+    <Image Include="7_of_Hearts.jpg" />
+    <Image Include="7_of_Spades.jpg" />
+    <Image Include="8_of_Clubs.jpg" />
+    <Image Include="8_of_Diamonds.jpg" />
+    <Image Include="8_of_Hearts.jpg" />
+    <Image Include="8_of_Spades.jpg" />
+    <Image Include="9_of_Clubs.jpg" />
+    <Image Include="9_of_Diamonds.jpg" />
+    <Image Include="9_of_Hearts.jpg" />
+    <Image Include="9_of_Spades.jpg" />
+    <Image Include="A_of_Clubs.jpg" />
+    <Image Include="A_of_Spades.jpg" />
     <Image Include="Background.jpg" />
     <Image Include="info_button.png" />
+    <Image Include="J_of_Clubs.jpg" />
+    <Image Include="J_of_Spades.jpg" />
+    <Image Include="K_of_Clubs.jpg" />
+    <Image Include="K_of_Spades.jpg" />
     <Image Include="Quit.png" />
+    <Image Include="Q_of_Clubs.jpg" />
+    <Image Include="Q_of_Spades.jpg" />
     <Image Include="StartButton.png" />
   </ItemGroup>
   <ItemGroup>

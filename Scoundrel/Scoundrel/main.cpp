@@ -10,7 +10,6 @@
 int main()
 {
     std::srand((unsigned int)std::time(nullptr));
-
     Deck cardDeck1;
     cardDeck1.printDeck();
     std::cout << "--------------------------------------------- Shuffling Deck ------------------------------------------------" << std::endl;
@@ -40,10 +39,6 @@ int main()
 
     sf::Texture bgTexture;
     bgTexture.loadFromFile("background.jpg");
-
-    sf::Texture input;
-    input.loadFromFile("2_of_Diamonds.jpg");
-
     sf::Sprite bgSprite(bgTexture); //Background Sprite
 
     //Testers for all positions
@@ -93,7 +88,7 @@ int main()
 
         // Testing the button
         //startButton.updateScreenButton(window);
-        exit = runit.updatestate(window);
+        exit = runit.updatestate(window, cardDeck1);
         window.display();
     }
 }
