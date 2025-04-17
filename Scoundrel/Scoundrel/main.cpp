@@ -5,7 +5,7 @@
 int main()
 {
 
-    sf::RenderWindow window(sf::VideoMode({ 2000, 1000 }), "SFML works!");
+    sf::RenderWindow window(sf::VideoMode({ 1920, 1080 }), "SFML works!");
     sf::CircleShape shape(100.f);
     shape.setFillColor(sf::Color::Green);
 
@@ -16,10 +16,31 @@ int main()
 
     sf::Texture input;
     input.loadFromFile("2_of_Diamonds.jpg");
-    sf::Sprite bgSprite(bgTexture);
-    Diamond tester('A', 'S', &input);
-    tester.setPosition(sf::Vector2f(500, 0));
-    tester.setScale(sf::Vector2f(.5, .5));
+
+    sf::Sprite bgSprite(bgTexture); //Background Sprite
+
+    //Testers for all positions
+    //Diamond tester1('A', 'S', &input);
+    //Diamond tester2('A', 'S', &input);
+    //Diamond tester3('A', 'S', &input);
+    //Diamond tester4('A', 'S', &input);
+    //Diamond tester5('A', 'S', &input);
+    //Diamond tester6('A', 'S', &input);
+
+    sf::Vector2f Position1 = { ((1920 / 2) - 500) - 100, 200 };
+    sf::Vector2f Position2 = { ((1920 / 2) - 160) - 100, 200 };
+    sf::Vector2f Position3 = { ((1920 / 2) + 160) - 100, 200 };
+    sf::Vector2f Position4 = { ((1920 / 2) + 500) - 100, 200 };
+    sf::Vector2f UserCard = { (1920 / 2) - 100, 700 };
+    sf::Vector2f UserStack = { (1920 / 2) - 50, 725 };
+
+    //Set position for each item for test
+    //tester1.setPosition(Position1);
+    //tester2.setPosition(Position2);
+    //tester3.setPosition(Position3);
+    //tester4.setPosition(Position4);
+    //tester5.setPosition(UserCard);
+    //tester6.setPosition(UserStack);
 
 
     bgSprite.setScale(sf::Vector2f(window.getSize().x / 100, window.getSize().y / 100));
@@ -37,8 +58,16 @@ int main()
 
 
         window.clear();
-        window.draw(bgSprite);
-        window.draw(tester);
+        window.draw(bgSprite); //Draw background
+
+ //     Drawing all tests
+        //window.draw(tester1);
+        //window.draw(tester2);
+        //window.draw(tester3);
+        //window.draw(tester4);
+        //window.draw(tester5);
+        //window.draw(tester6);
+
         window.display();
     }
 }
