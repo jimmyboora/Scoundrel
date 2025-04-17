@@ -3,22 +3,29 @@
 #include "Spade.hpp"
 #include "Club.hpp"
 #include "Heart.hpp"
-#include "ScreenButton.hpp"
+#include "Menu.hpp"
 
 
 int main()
 {
-
+    int exit = 0;
     sf::RenderWindow window(sf::VideoMode({ 1920, 1080 }), "SFML works!");
     sf::CircleShape shape(100.f);
     shape.setFillColor(sf::Color::Green);
 
     // Tester code for button
     sf::Texture startButtonTexture;
-    startButtonTexture.loadFromFile("2_of_Diamonds.jpg");
-    ScreenButton testButton(startButtonTexture);
-    testButton.getSprite().setPosition(sf::Vector2f(300, 300));
-    testButton.activate();
+    sf::Texture infoButtonTexture;
+    sf::Texture exitButtonTexture;
+    startButtonTexture.loadFromFile("StartButton.png");
+    infoButtonTexture.loadFromFile("info_button.png");
+    exitButtonTexture.loadFromFile("Quit.png");
+    Menu runit(startButtonTexture, infoButtonTexture, exitButtonTexture);
+
+ /*   startButtonTexture.loadFromFile("StartButton.png");
+    ScreenButton startButton(startButtonTexture);
+    startButton.getSprite().setPosition(sf::Vector2f(1920 / 2 - 150, 500));
+    startButton.activate();*/
 
 
 
@@ -56,7 +63,7 @@ int main()
 
     bgSprite.setScale(sf::Vector2f(window.getSize().x / 100, window.getSize().y / 100));
 
-    while (window.isOpen())
+    while (window.isOpen() && exit == 0)
     {
         while (const std::optional event = window.pollEvent())
         {
@@ -76,8 +83,8 @@ int main()
         //window.draw(tester6);
 
         // Testing the button
-        testButton.updateScreenButton(window);
-
+        //startButton.updateScreenButton(window);
+        exit = runit.updatestate(window);
         window.display();
     }
 }

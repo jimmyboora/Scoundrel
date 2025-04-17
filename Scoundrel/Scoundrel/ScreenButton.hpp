@@ -22,7 +22,7 @@ public:
 
 	bool checkPressed() { return this->isPressed; };
 
-	void updateScreenButton(sf::RenderWindow& theWindow);
+	bool updateScreenButton(sf::RenderWindow& theWindow);
 private:
 	sf::Sprite mSprite;
 	bool isPressed;
@@ -51,25 +51,30 @@ void ScreenButton::deactivate() {
 }
 
 
-void ScreenButton::updateScreenButton(sf::RenderWindow& theWindow) {
+bool ScreenButton::updateScreenButton(sf::RenderWindow& theWindow) {
+	bool value = false;
 	if (this->isActive) {
 		sf::Vector2f mousePosition = theWindow.mapPixelToCoords(sf::Mouse::getPosition(theWindow));
 
 		if (this->mSprite.getGlobalBounds().contains(mousePosition)) {
 			if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left)) {
 				this->isPressed = true;
-				std::cout << "BUTTON IS PRESSED" << std::endl;
+				//std::cout << "BUTTON IS PRESSED" << std::endl;
+				value = true;
 			}
 			else {
 				this->isPressed = false;
-				std::cout << "BUTTON IS NOT PRESSED" << std::endl;
+				//std::cout << "BUTTON IS NOT PRESSED" << std::endl;
+				value = false;
 			}
 		}
 		else {
 			this->isPressed = false;
-			std::cout << "MOUSE IS OUTSIDE OF BUTTON BOUNDS" << std::endl;
+			//std::cout << "MOUSE IS OUTSIDE OF BUTTON BOUNDS" << std::endl;
+			value = false;
 		}
 	}
 
 	theWindow.draw(this->mSprite);
+	return value;
 }
