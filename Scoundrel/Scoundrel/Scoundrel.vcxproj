@@ -148,6 +148,7 @@
   <ItemGroup>
     <ClInclude Include="Card.hpp" />
     <ClInclude Include="Club.hpp" />
+    <ClInclude Include="Deck.hpp" />
     <ClInclude Include="Diamond.hpp" />
     <ClInclude Include="Heart.hpp" />
     <ClInclude Include="Menu.hpp" />
