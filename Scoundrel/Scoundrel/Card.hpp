@@ -28,7 +28,7 @@ protected:
 
 inline Card::Card()
 {
-	this->setSize(sf::Vector2f(1000.f, 1500.f));
+	this->setSize(sf::Vector2f(200.f, 300.f));
 	value = 0;
 	suit = 0;
 }
