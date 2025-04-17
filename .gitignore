@@ -22,3 +22,21 @@ Debug/
 Release/
 x64/
 
+# Additional Visual Studio / Build-related
+*.userosscache
+*.sdf
+
+# VS Code
+.vscode/
+
+# CMake
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+Makefile
+
+# Visual Studio for Mac
+.idea/
+
+# JetBrains Rider/IntelliJ IDEA
+.idea/
