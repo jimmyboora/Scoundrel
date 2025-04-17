@@ -150,6 +150,7 @@
     <ClInclude Include="Club.hpp" />
     <ClInclude Include="Diamond.hpp" />
     <ClInclude Include="Heart.hpp" />
+    <ClInclude Include="ScreenButton.hpp" />
     <ClInclude Include="Spade.hpp" />
   </ItemGroup>
   <ItemGroup>
