@@ -151,11 +151,19 @@
     <ClInclude Include="Deck.hpp" />
     <ClInclude Include="Diamond.hpp" />
     <ClInclude Include="Heart.hpp" />
+    <ClInclude Include="Menu.hpp" />
+    <ClInclude Include="ScreenButton.hpp" />
     <ClInclude Include="Spade.hpp" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="2_of_Diamonds.jpg" />
     <Image Include="Background.jpg" />
+    <Image Include="info_button.png" />
+    <Image Include="Quit.png" />
+    <Image Include="StartButton.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="ARIAL.TTF" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
