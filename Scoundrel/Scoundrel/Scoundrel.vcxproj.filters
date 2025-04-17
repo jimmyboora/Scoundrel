@@ -26,6 +26,9 @@
     <ClInclude Include="Diamond.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="ScreenButton.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="2_of_Diamonds.jpg">

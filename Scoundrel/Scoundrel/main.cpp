@@ -1,11 +1,12 @@
 
 #include "diamond.hpp"
+#include "ScreenButton.hpp"
 
 
 int main()
 {
 
-    sf::RenderWindow window(sf::VideoMode({ 2000, 1000 }), "SFML works!");
+    sf::RenderWindow window(sf::VideoMode({ 1920, 1080 }), "SFML works!");
     sf::CircleShape shape(100.f);
     shape.setFillColor(sf::Color::Green);
 
@@ -14,12 +15,19 @@ int main()
     sf::Texture bgTexture;
     bgTexture.loadFromFile("background.jpg");
 
-    sf::Texture input;
-    input.loadFromFile("2_of_Diamonds.jpg");
+    sf::Texture startButtonTexture; 
+    startButtonTexture.loadFromFile("2_of_Diamonds.jpg");
+    ScreenButton testButton(startButtonTexture);
+    testButton.getSprite().setPosition(sf::Vector2f(300, 300));
+    testButton.activate(); 
+
+
+    // sf::Texture input;
+    // input.loadFromFile("2_of_Diamonds.jpg");
     sf::Sprite bgSprite(bgTexture);
-    Diamond tester('A', 'S', &input);
-    tester.setPosition(sf::Vector2f(500, 0));
-    tester.setScale(sf::Vector2f(.5, .5));
+    // Diamond tester('A', 'S', &input);
+    // tester.setPosition(sf::Vector2f(500, 0));
+    // tester.setScale(sf::Vector2f(.5, .5));
 
 
     bgSprite.setScale(sf::Vector2f(window.getSize().x / 100, window.getSize().y / 100));
@@ -38,7 +46,8 @@ int main()
 
         window.clear();
         window.draw(bgSprite);
-        window.draw(tester);
+        testButton.updateScreenButton(window);
+        //window.draw(tester);
         window.display();
     }
 }

@@ -146,6 +146,7 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ScreenButton.hpp" />
     <ClInclude Include="Card.hpp" />
     <ClInclude Include="Diamond.hpp" />
   </ItemGroup>
