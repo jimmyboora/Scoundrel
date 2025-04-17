@@ -1,6 +1,6 @@
 #pragma once
 
-#include "card.hpp"
+#include "Card.hpp"
 
 
 class Spade : public Card

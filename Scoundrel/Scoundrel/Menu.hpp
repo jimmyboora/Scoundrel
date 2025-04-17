@@ -1,6 +1,7 @@
 #pragma once 
 
 #include "ScreenButton.hpp"
+#include "Deck.hpp"
 
 
 class Menu
@@ -18,7 +19,7 @@ public:
 	
 	}
 
-	int updatestate(sf::RenderWindow& theWindow);
+	int updatestate(sf::RenderWindow& theWindow, Deck maindeck);
 	void rungame();
 	void printrules(sf::RenderWindow& theWindow);
 
@@ -31,7 +32,7 @@ private:
 };
 
 
-inline int Menu::updatestate(sf::RenderWindow& theWindow)
+inline int Menu::updatestate(sf::RenderWindow& theWindow, Deck maindeck)
 {
 	if (state == 0)
 	{
@@ -39,6 +40,7 @@ inline int Menu::updatestate(sf::RenderWindow& theWindow)
 		{
 			//std::cout << "Entering Game" << std::endl;
 			state = 1;
+
 		}
 		if (info.updateScreenButton(theWindow))
 		{
@@ -54,6 +56,10 @@ inline int Menu::updatestate(sf::RenderWindow& theWindow)
 	if (state == 1)
 	{
 		//Start Game
+		std::vector<Card> Playdeck = maindeck.getcards(); //Test for printing random card, it works!
+		
+		Playdeck[0].setPosition(sf::Vector2f(800, 600));
+		theWindow.draw(Playdeck[0]);
 	}
 	if (state == 2)
 	{
