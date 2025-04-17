@@ -1,29 +1,24 @@
+# Visual Studio
 .vs/
-*.user
 *.suo
+*.user
 *.VC.db
-*.VC.opendb
+*.opensdf
+*.cache
+
+# Build artifacts
+*.obj
+*.exe
+*.pdb
+*.ipdb
+*.iobj
+*.log
+*.tlog
+*.lastbuildstate
+*.db
+
+# Output folders
 Debug/
 Release/
 x64/
-*.exe
-*.obj
-*.log
-*.cache
-*.pdb
-*.ilk
-*.ipch
-*.aps
-*.ncb
-*.sdf
-*.opensdf
-*.tlog
-*.idb
-*.o
-*.pch
-*.iobj
-*.ipdb
-*.res
-*.class
-bin/
-obj/
+
