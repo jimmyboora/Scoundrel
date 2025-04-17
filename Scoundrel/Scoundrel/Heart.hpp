@@ -7,13 +7,13 @@ class Heart : public Card
 {
 public:
 	Heart();
-	Heart(char v, char s, const sf::Texture* loadimage);
+	Heart(string v, string s, const sf::Texture* loadimage);
 
-	char getvalue() override;
-	char getsuit() override;
+	string getvalue() override;
+	string getsuit() override;
 
-	void setValue(char newValue) override;
-	void setSuit(char newSuit) override;
+	void setValue(const string& newValue) override;
+	void setSuit(const string& newSuit) override;
 
 private:
 
@@ -25,29 +25,29 @@ inline Heart::Heart()
 	suit = '0';
 }
 
-inline Heart::Heart(char v, char s, const sf::Texture* loadimage)
+inline Heart::Heart(string v, string s, const sf::Texture* loadimage)
 {
 	value = v;
 	suit = s;
 	this->setTexture(loadimage);
 }
 
-inline char Heart::getvalue()
+inline string Heart::getvalue()
 {
 	return value;
 }
 
-inline char Heart::getsuit()
+inline string Heart::getsuit()
 {
 	return suit;
 }
 
-inline void Heart::setValue(char newValue)
+inline void Heart::setValue(const string& newValue)
 {
 	this->value = newValue;
 }
 
-inline void Heart::setSuit(char newSuit)
+inline void Heart::setSuit(const string& newSuit)
 {
 	this->suit = newSuit;
 }

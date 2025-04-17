@@ -1,44 +1,66 @@
 #pragma once
 #include <string>
+#include <cstdlib>
+#include <iostream>
+#include <ctime>
 #include <SFML/Graphics.hpp>
+
+using std::string;
 
 
 class Card : public sf::RectangleShape
 {
 public:
 	Card();
-
-	Card(char v, char s) : sf::RectangleShape(sf::Vector2f(100.f, 150.f))
+	Card(string v, string s) : sf::RectangleShape(sf::Vector2f(100.f, 150.f))
 	{
 		value = v;
 		suit = s;
 	}
 
-	virtual char getvalue() = 0;
-	virtual char getsuit() = 0;
+	virtual string getvalue();
+	virtual string getsuit();
 
-	virtual void setValue(char newValue);
-	virtual void setSuit(char newSuit);
+	virtual void setValue(const string& newValue);
+	virtual void setSuit(const string& newSuit);
+
+	void printCard() const;
 
 protected:
-	char value;
-	char suit;
+	string  value;
+	string suit;
 
 };
 
 inline Card::Card()
 {
 	this->setSize(sf::Vector2f(200.f, 300.f));
-	value = 0;
-	suit = 0;
+	string value = "";
+	string suit = "";
 }
 
-inline void Card::setValue(char newValue)
+inline string Card::getvalue()
+{
+	return value;
+}
+
+inline string Card::getsuit()
+{
+	return suit;
+}
+
+inline void Card::setValue(const string& newValue)
 {
 	value = newValue;
 }
 
-inline void Card::setSuit(char newSuit)
+inline void Card::setSuit(const string& newSuit)
 {
 	suit = newSuit;
+}
+
+void Card::printCard() const
+{
+
+	std::cout << suit << " " << value << std::endl;
 }

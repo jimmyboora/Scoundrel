@@ -1,4 +1,5 @@
 #include "Card.hpp"
+#include "Deck.hpp"
 #include "Diamond.hpp"
 #include "Spade.hpp"
 #include "Club.hpp"
@@ -7,6 +8,13 @@
 
 int main()
 {
+    std::srand((unsigned int)std::time(nullptr));
+
+    Deck cardDeck1;
+    cardDeck1.printDeck();
+    std::cout << "--------------------------------------------- Shuffling Deck ------------------------------------------------" << std::endl;
+    cardDeck1.shuffleDeck();
+    cardDeck1.printShuffledDeck();
 
     sf::RenderWindow window(sf::VideoMode({ 1920, 1080 }), "SFML works!");
     sf::CircleShape shape(100.f);
