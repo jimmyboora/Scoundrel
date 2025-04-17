@@ -38,6 +38,9 @@
     <ClInclude Include="ScreenButton.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Menu.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="2_of_Diamonds.jpg">
@@ -46,5 +49,19 @@
     <Image Include="Background.jpg">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="StartButton.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="info_button.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Quit.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="ARIAL.TTF">
+      <Filter>Resource Files</Filter>
+    </Font>
   </ItemGroup>
 </Project>
