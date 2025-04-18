@@ -195,6 +195,7 @@
     <Image Include="A_of_Clubs.jpg" />
     <Image Include="A_of_Spades.jpg" />
     <Image Include="Background.jpg" />
+    <Image Include="Clear_Space.png" />
     <Image Include="info_button.png" />
     <Image Include="J_of_Clubs.jpg" />
     <Image Include="J_of_Spades.jpg" />
