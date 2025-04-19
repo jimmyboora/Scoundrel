@@ -19,6 +19,7 @@ public:
 
 	void activate();
 	void deactivate();
+	bool getactive();
 
 	bool checkPressed() { return this->isPressed; };
 
@@ -48,6 +49,11 @@ void ScreenButton::activate() {
 
 void ScreenButton::deactivate() {
 	this->isActive = false;
+}
+
+inline bool ScreenButton::getactive()
+{
+	return isActive;
 }
 
 

@@ -204,6 +204,7 @@
     <Image Include="Quit.png" />
     <Image Include="Q_of_Clubs.jpg" />
     <Image Include="Q_of_Spades.jpg" />
+    <Image Include="Run_Button.png" />
     <Image Include="StartButton.png" />
   </ItemGroup>
   <ItemGroup>
