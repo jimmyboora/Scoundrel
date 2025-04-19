@@ -26,11 +26,14 @@ int main()
     sf::Texture infoButtonTexture;
     sf::Texture exitButtonTexture;
     sf::Texture cardslot;
+    sf::Texture runbutton;
+
     startButtonTexture.loadFromFile("StartButton.png");
     infoButtonTexture.loadFromFile("info_button.png");
     exitButtonTexture.loadFromFile("Quit.png");
     cardslot.loadFromFile("Clear_Space.png");
-    Menu runit(startButtonTexture, infoButtonTexture, exitButtonTexture, cardslot);
+    runbutton.loadFromFile("Run_Button.png");
+    Menu runit(startButtonTexture, infoButtonTexture, exitButtonTexture, cardslot,runbutton);
 
  /*   startButtonTexture.loadFromFile("StartButton.png");
     ScreenButton startButton(startButtonTexture);

@@ -19,7 +19,9 @@ public:
 	Deck();
 	//~Deck();
 	void shuffleDeck(); //Changed this function to shuffle the values of itself and not return a value
-	vector<Card> getcards();
+	vector<Card>& getcards();
+	Card drawcard();
+	void insertcard(Card card);
 	void printDeck();
 	void printShuffledDeck();
 
@@ -156,9 +158,23 @@ void Deck::shuffleDeck() //Changed this function to shuffle the values of itself
 	cardDeck = shuffleDeck;
 }
 
-inline vector<Card> Deck::getcards()
+inline vector<Card> &Deck::getcards()
 {
 	return cardDeck;
+}
+
+inline Card Deck::drawcard()
+{
+	Card temp;
+	temp = cardDeck.front();
+	cardDeck.erase(cardDeck.begin());
+
+	return temp;
+}
+
+inline void Deck::insertcard(Card card)
+{
+	cardDeck.push_back(card);
 }
 
 void Deck::printDeck()

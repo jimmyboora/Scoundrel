@@ -193,6 +193,9 @@
     <Image Include="Clear_Space.png">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="Run_Button.png">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <Font Include="ARIAL.TTF">
