@@ -20,7 +20,9 @@ public:
 	//~Deck();
 	void shuffleDeck(); //Changed this function to shuffle the values of itself and not return a value
 	vector<Card>& getcards();
+	void setcards(vector<Card>& newcards);
 	Card drawcard();
+	void regenerate();
 	void insertcard(Card card);
 	void printDeck();
 	void printShuffledDeck();
@@ -124,7 +126,7 @@ Deck::Deck()
 				}
 				if (i == 3)
 				{
-					cardDeck.push_back(Spade(suits[i], rank[j], &Ctexture[j]));
+					cardDeck.push_back(Spade(suits[i], rank[j], &Stexture[j]));
 
 				}
 			}
@@ -163,6 +165,11 @@ inline vector<Card> &Deck::getcards()
 	return cardDeck;
 }
 
+inline void Deck::setcards(vector<Card>& newcards)
+{
+	cardDeck = newcards;
+}
+
 inline Card Deck::drawcard()
 {
 	Card temp;
@@ -170,6 +177,43 @@ inline Card Deck::drawcard()
 	cardDeck.erase(cardDeck.begin());
 
 	return temp;
+}
+
+inline void Deck::regenerate()
+{
+	int i = 0, j = 0;
+	for (i = 0; i < 4; i++)
+	{
+		if (i == 2 || i == 3)
+		{
+			for (j = 0; j < 13; j++)
+			{
+				if (i == 2)
+				{
+					cardDeck.push_back(Club(suits[i], rank[j], &Ctexture[j]));
+				}
+				if (i == 3)
+				{
+					cardDeck.push_back(Spade(suits[i], rank[j], &Stexture[j]));
+
+				}
+			}
+		}
+		if (i == 0 || i == 1)
+		{
+			for (j = 0; j < 9; j++)
+			{
+				if (i == 0)
+				{
+					cardDeck.push_back(Diamond(suits[i], rank[j], &Dtexture[j]));
+				}
+				if (i == 1)
+				{
+					cardDeck.push_back(Heart(suits[i], rank[j], &Htexture[j]));
+				}
+			}
+		}
+	}
 }
 
 inline void Deck::insertcard(Card card)
