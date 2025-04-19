@@ -90,6 +90,14 @@ inline int Menu::updatestate(sf::RenderWindow& theWindow, Deck& maindeck)
 			start.deactivate();
 			info.deactivate();
 			exit.deactivate();
+			if (maindeck.getcards().size() < 2)
+			{
+				maindeck.drawcard();
+				maindeck.regenerate();
+				maindeck.shuffleDeck();
+				maindeck.printShuffledDeck();
+			}
+			std::cout << "Starting Game";
 		}
 		if (info.updateScreenButton(theWindow))
 		{
@@ -102,18 +110,21 @@ inline int Menu::updatestate(sf::RenderWindow& theWindow, Deck& maindeck)
 			state = 3;
 		}
 	}
-	if (state == 1 || state == 4) //State 1 is the first interation of menue used for click guard
+	else if (state == 1 || state == 4) //State 1 is the first interation of menue used for click guard
 	{
 		//Start Game
 		rungame(theWindow, maindeck);
-		state = 4;
+		if (maindeck.getcards().size() > 1)
+		{
+			state = 4;
+		}
 	}
-	if (state == 2)
+	else if (state == 2)
 	{
 		//Print instuctions
 		printrules(theWindow);
 	}
-	if (state == 3)
+	else if (state == 3)
 	{
 		//Returns variable to exit program
 		return 1;
@@ -138,7 +149,7 @@ inline void Menu::rungame(sf::RenderWindow& theWindow, Deck &Playdeck)
 	//Start state = 0
 	//First phase draw 4
 	//Run -> (State 0) or Select card -> (State 1)
-	if (playstate == -1 && Playdeck.getcards().size() != 0)
+	if (playstate == -1 && Playdeck.getcards().size() > 1)
 	{
 		card1 = Playdeck.drawcard();
 		card1.setPosition(POSITION_1);
@@ -213,13 +224,29 @@ inline void Menu::rungame(sf::RenderWindow& theWindow, Deck &Playdeck)
 			card4.setPosition(sf::Vector2f(10000, 0));
 			showrun = false;
 		}
-		if (cardspicked == 3) // Kicks out of state once 3 cards are picked
+		if (cardspicked == 3 && Playdeck.getcards().size() > 1) // Kicks out of state once 3 cards are picked
 		{
 			playstate = 2;
 			cardspicked = 0;
 			showrun = true;
 		}
+		if (cardspicked == 4)
+		{
+			//Place winning screen here
+			std::cout << "WINNER";
+			cardspicked = 0;
+			state = 0;
+			playstate = -1;
+			pos1.deactivate();
+			pos2.deactivate();
+			pos3.deactivate();
+			pos4.deactivate();
+			run.deactivate();
+			start.activate();
+			info.activate();
+			exit.activate();
 
+		}
 	}
 
 
@@ -229,8 +256,9 @@ inline void Menu::rungame(sf::RenderWindow& theWindow, Deck &Playdeck)
 	//Mid State = 2
 	//Draw 3 cards
 	// Run -> (State 0) or Fight (State 1)
-	if (playstate == 2 && Playdeck.getcards().size() != 0)
+	if (playstate == 2 && Playdeck.getcards().size() > 1)
 	{
+		std::cout << Playdeck.getcards().size() << std::endl;
 		if (pos1.getactive() == false)
 		{
 			card1 = Playdeck.drawcard();

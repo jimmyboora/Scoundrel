@@ -93,6 +93,7 @@ int main()
 
         // Testing the button
         //startButton.updateScreenButton(window);
+
         exit = runit.updatestate(window, cardDeck1);
         window.display();
     }
