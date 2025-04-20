@@ -17,7 +17,7 @@ int main()
     cardDeck1.printShuffledDeck();
 
     int exit = 0;
-    sf::RenderWindow window(sf::VideoMode({ 1920, 1080 }), "SFML works!");
+    sf::RenderWindow window(sf::VideoMode({ 1920, 1080 }), "Scoundrel");
     sf::CircleShape shape(100.f);
     shape.setFillColor(sf::Color::Green);
 

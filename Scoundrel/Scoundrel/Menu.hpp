@@ -2,6 +2,7 @@
 
 #include "ScreenButton.hpp"
 #include "Deck.hpp"
+#include "Player.hpp"
 
 
 //Constant values for card positions
@@ -67,6 +68,7 @@ private:
 	Card card4;
 	Card weaponcard;
 	Card weaponstackcard;
+	Player player1;
 	ScreenButton start;
 	ScreenButton info;
 	ScreenButton exit;
@@ -200,6 +202,7 @@ inline void Menu::rungame(sf::RenderWindow& theWindow, Deck &Playdeck)
 			pos1.deactivate();
 			cardspicked++;
 			card1.setPosition(sf::Vector2f(10000, 0));
+			player1.updatePlayer(card1); // Updates player stats for each card selected, called at card slot 0, 1, 2, 3
 			showrun = false;
 
 		}
@@ -208,6 +211,7 @@ inline void Menu::rungame(sf::RenderWindow& theWindow, Deck &Playdeck)
 			pos2.deactivate();
 			cardspicked++;
 			card2.setPosition(sf::Vector2f(10000, 0));
+			player1.updatePlayer(card2);
 			showrun = false;
 		}
 		if (Cardslots[2].updateScreenButton(theWindow))
@@ -215,6 +219,7 @@ inline void Menu::rungame(sf::RenderWindow& theWindow, Deck &Playdeck)
 			pos3.deactivate();
 			cardspicked++;
 			card3.setPosition(sf::Vector2f(10000, 0));
+			player1.updatePlayer(card3);
 			showrun = false;
 		}
 		if (Cardslots[3].updateScreenButton(theWindow))
@@ -222,6 +227,7 @@ inline void Menu::rungame(sf::RenderWindow& theWindow, Deck &Playdeck)
 			pos4.deactivate();
 			cardspicked++;
 			card4.setPosition(sf::Vector2f(10000, 0));
+			player1.updatePlayer(card4);
 			showrun = false;
 		}
 		if (cardspicked == 3 && Playdeck.getcards().size() > 1) // Kicks out of state once 3 cards are picked
@@ -264,6 +270,7 @@ inline void Menu::rungame(sf::RenderWindow& theWindow, Deck &Playdeck)
 			card1 = Playdeck.drawcard();
 			card1.setPosition(POSITION_1);
 			pos1.activate();
+			
 		}
 		if (pos2.getactive() == false)
 		{

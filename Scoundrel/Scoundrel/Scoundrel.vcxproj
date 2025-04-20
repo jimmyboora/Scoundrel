@@ -152,6 +152,7 @@
     <ClInclude Include="Diamond.hpp" />
     <ClInclude Include="Heart.hpp" />
     <ClInclude Include="Menu.hpp" />
+    <ClInclude Include="Player.hpp" />
     <ClInclude Include="ScreenButton.hpp" />
     <ClInclude Include="Spade.hpp" />
   </ItemGroup>
