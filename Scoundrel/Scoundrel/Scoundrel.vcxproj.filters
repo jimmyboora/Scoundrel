@@ -44,6 +44,12 @@
     <ClInclude Include="Deck.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Player.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Test.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="2_of_Diamonds.jpg">
@@ -194,6 +200,9 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="Run_Button.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Lost_Screen.png">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

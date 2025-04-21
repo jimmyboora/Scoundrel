@@ -17,7 +17,7 @@ public:
 	//	value = v;
 	//	suit = s;
 	//}
-	virtual void setcard(Card newcard);
+	void setcard(Card newcard);
 	virtual string getvalue();
 	virtual string getsuit();
 
