@@ -21,19 +21,26 @@ public:
 	//~Player();
 	int getHealth();
 	int getDamage();
+	int getWeapon();
 	void setHealth(int newHealth);
 	void setDamage(int newDamage);
+	void setWeapon(int newWeapon);
+	int convertCardType(Card currentCard);
 	void updatePlayer(Card currentCard);
 
 private:
 	int initialHealth;
 	int initialDamage;
+	int initialWeapon;
+	Card cardPlayed;
 };
 
 Player::Player()
 {
 	initialHealth = 20;
 	initialDamage = 0;
+	initialWeapon = 0;
+	cardPlayed = Card();
 }
 
 int Player::getHealth()
@@ -46,6 +53,11 @@ int Player::getDamage()
 	return initialDamage;
 }
 
+int Player::getWeapon()
+{
+	return initialWeapon;
+}
+
 void Player::setHealth(int newHealth)
 {
 	initialHealth = newHealth;
@@ -56,137 +68,120 @@ void Player::setDamage(int newDamage)
 	initialDamage = newDamage;
 }
 
+void Player::setWeapon(int newWeapon)
+{
+	initialWeapon = newWeapon;
+}
+
+int Player::convertCardType(Card currentCard)
+{
+	string cardSuit = currentCard.getsuit(); // getSuit() and getRank() are accidently swapped so here we are actually getting the card rank, "1", "2", "3","4" etc
+	int cardValue = 0;
+	if (cardSuit == "Ace")
+	{
+		cardValue = 1;
+	}
+	else if (cardSuit == "2")
+	{
+		cardValue = 2;
+	}
+	else if (cardSuit == "3")
+	{
+		cardValue = 3;
+	}
+	else if (cardSuit == "4")
+	{
+		cardValue = 4;
+	}
+	else if (cardSuit == "5")
+	{
+		cardValue = 5;
+	}
+	else if (cardSuit == "6")
+	{
+		cardValue = 6;
+	}
+	else if (cardSuit == "7")
+	{
+		cardValue = 7;
+	}
+	else if (cardSuit == "8")
+	{
+		cardValue = 8;
+	}
+	else if (cardSuit == "9")
+	{
+		cardValue = 9;
+	}
+	else if (cardSuit == "10")
+	{
+		cardValue = 10;
+	}
+	else if (cardSuit == "Jack")
+	{
+		cardValue = 11;
+	}
+	else if (cardSuit == "Queen")
+	{
+		cardValue = 12;
+	}
+	else if (cardSuit == "King")
+	{
+		cardValue = 13;
+	}
+	return cardValue;
+}
+
 void Player::updatePlayer(Card currentCard)
 {
-	string cardRank = currentCard.getsuit(); // Note: Found that the suit and rank are swapped through debugging. i.e, cardRank is "Clubs", "Diamonds, etc. cardSuit is "1", "2", "King" etc
-	string cardSuit = currentCard.getvalue(); // I just swapped suit and rank in this function. 
-
-	if (cardRank == "Clubs" || cardRank == "Spades") // Clubs and Spades decrease health
+	string cardSuit = currentCard.getsuit(); // Note: Found that the suit and rank are swapped through debugging. i.e, cardRank is "Clubs", "Diamonds, etc. cardSuit is "1", "2", "King" etc
+	string cardRank = currentCard.getvalue(); // I just swapped suit and rank in this function.
+	string lastSuit = cardPlayed.getsuit();
+	string lastRank = cardPlayed.getvalue();
+	int cardValue = convertCardType(currentCard);
+	int lastValue = convertCardType(cardPlayed);
+	int playState = 0;
+	if (cardRank == "Diamonds")
 	{
-		if (cardSuit == "Ace")
+		lastValue = cardValue;
+		lastRank = "Diamonds";
+		initialWeapon = cardValue;
+		playState = 0;
+	}
+	else if (cardRank == "Clubs" || cardRank == "Spades")
+	{
+		initialDamage = cardValue;
+		playState = 1;
+	}
+	else if (cardRank == "Hearts")
+	{
+		playState = 2;
+	}
+	if (playState == 0)
+	{
+		if (initialWeapon < initialDamage)
 		{
-			initialHealth -= 1;
-			initialDamage += 1;
+			initialHealth -= (initialDamage - initialWeapon);
 		}
-		else if (cardSuit == "2")
+		else
 		{
-			initialHealth -= 2;
-			initialDamage += 2;
-		}
-		else if (cardSuit == "3")
-		{
-			initialHealth -= 3;
-			initialDamage += 3;
-		}
-		else if (cardSuit == "4")
-		{
-			initialHealth -= 4;
-			initialDamage += 4;
-		}
-		else if (cardSuit == "5")
-		{
-			initialHealth -= 5;
-			initialDamage += 5;
-		}
-		else if (cardSuit == "6")
-		{
-			initialHealth -= 6;
-			initialDamage += 6;
-		}
-		else if (cardSuit == "7")
-		{
-			initialHealth -= 7;
-			initialDamage += 7;
-		}
-		else if (cardSuit == "8")
-		{
-			initialHealth -= 8;
-			initialDamage += 8;
-		}
-		else if (cardSuit == "9")
-		{
-			initialHealth -= 9;
-			initialDamage += 9;
-		}
-		else if (cardSuit == "10")
-		{
-			initialHealth -= 10;
-			initialDamage += 10;
-		}
-		else if (cardSuit == "Jack")
-		{
-			initialHealth -= 11;
-			initialDamage += 11;
-		}
-		else if (cardSuit == "Queen")
-		{
-			initialHealth -= 12;
-			initialDamage += 12;
-		}
-		else if (cardSuit == "King")
-		{
-			initialHealth -= 13;
-			initialDamage += 13;
+			initialHealth -= 0;
 		}
 	}
-	else if (currentCard.getsuit() == "Hearts") // Hearts add health (20 max health)
+	else if (playState == 1)
 	{
-		if (cardSuit == "Ace")
+		if (lastRank == "Diamonds")
 		{
-			initialHealth += 1;
+			initialHealth -= (initialDamage - initialWeapon);
 		}
-		else if (cardSuit == "2")
+		else
 		{
-			initialHealth += 2;
-		}
-		else if (cardSuit == "3")
-		{
-			initialHealth += 3;
-		}
-		else if (cardSuit == "4")
-		{
-			initialHealth += 4;
-		}
-		else if (cardSuit == "5")
-		{
-			initialHealth += 5;
-		}
-		else if (cardSuit == "6")
-		{
-			initialHealth += 6;
-		}
-		else if (cardSuit == "7")
-		{
-			initialHealth += 7;
-		}
-		else if (cardSuit == "8")
-		{
-			initialHealth += 8;
-		}
-		else if (cardSuit == "9")
-		{
-			initialHealth += 9;
-		}
-		else if (cardSuit == "10")
-		{
-			initialHealth += 10;
-		}
-		else if (cardSuit == "Jack")
-		{
-			initialHealth += 11;
-		}
-		else if (cardSuit == "Queen")
-		{
-			initialHealth += 12;
-		}
-		else if (cardSuit == "King")
-		{
-			initialHealth += 13;
+			initialHealth -= initialDamage;
 		}
 	}
-	else if (currentCard.getsuit() == "Diamonds") // Diamonds add attack
+	else if (playState == 2)
 	{
-
+		initialHealth += cardValue;
 	}
 	if (initialHealth > 20) // If the health ever goes over 20 reset the health to 20
 	{
