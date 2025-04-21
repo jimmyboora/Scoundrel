@@ -172,13 +172,13 @@ inline void Menu::rungame(sf::RenderWindow& theWindow, Deck &Playdeck)
 	//Run -> (State 0) or Select card -> (State 1)
 	if (playstate == -1 && Playdeck.getcards().size() > 1)
 	{
-		card1.setcard(Playdeck.drawcard());
+		card1 = Playdeck.drawcard();
 		card1.setPosition(POSITION_1);
 
-		card2.setcard(Playdeck.drawcard());
+		card2 = Playdeck.drawcard();
 		card2.setPosition(POSITION_2);
 
-		card3.setcard(Playdeck.drawcard());
+		card3 = Playdeck.drawcard();
 		card3.setPosition(POSITION_3);
 
 		card4 = Playdeck.drawcard();

@@ -11,8 +11,13 @@ using std::string;
 class Card : public sf::RectangleShape
 {
 public:
-	Card();
-	Card(string v, string s) : sf::RectangleShape(sf::Vector2f(100.f, 150.f))
+	Card() : sf::RectangleShape(sf::Vector2f(200.f, 300.f))
+	{
+		this->setSize(sf::Vector2f(200.f, 300.f));
+		value = "";
+		suit = "";
+	}
+	Card(string v, string s) : sf::RectangleShape(sf::Vector2f(200.f, 300.f))
 	{
 		value = v;
 		suit = s;
@@ -27,18 +32,13 @@ public:
 
 	void printCard() const;
 
+
+
 protected:
 	string value;
 	string suit;
 
 };
-
-inline Card::Card()
-{
-	this->setSize(sf::Vector2f(200.f, 300.f));
-	value = "";
-	suit = "";
-}
 
 inline void Card::setcard(Card newcard)
 {
@@ -72,3 +72,4 @@ void Card::printCard() const
 
 	std::cout << suit << " " << value << std::endl;
 }
+
