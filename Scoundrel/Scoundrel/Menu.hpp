@@ -329,7 +329,7 @@ inline void Menu::rungame(sf::RenderWindow& theWindow, Deck &Playdeck)
 			}
 			showrun = false;
 		}
-		if (cardspicked == 3 && Playdeck.getcards().size() > 1) // Kicks out of state once 3 cards are picked
+		if (cardspicked == 3 && Playdeck.getcards().size() > 1 && player1.getHealth() >= 0) // Kicks out of state once 3 cards are picked
 		{
 			playstate = 2;
 			cardspicked = 0;
