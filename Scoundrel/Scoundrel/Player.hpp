@@ -22,6 +22,7 @@ public:
 	int getHealth();
 	int getDamage();
 	int getWeapon();
+	Card getcard();
 	void setHealth(int newHealth);
 	void setDamage(int newDamage);
 	void setWeapon(int newWeapon);
@@ -73,9 +74,14 @@ void Player::setWeapon(int newWeapon)
 	initialWeapon = newWeapon;
 }
 
+Card Player::getcard()
+{
+	return cardPlayed;
+}
+
 int Player::convertCardType(Card currentCard)
 {
-	string cardSuit = currentCard.getsuit(); // getSuit() and getRank() are accidently swapped so here we are actually getting the card rank, "1", "2", "3","4" etc
+	string cardSuit = currentCard.getvalue(); // getSuit() and getRank() are accidently swapped so here we are actually getting the card rank, "1", "2", "3","4" etc
 	int cardValue = 0;
 	if (cardSuit == "Ace")
 	{
@@ -134,52 +140,43 @@ int Player::convertCardType(Card currentCard)
 
 void Player::updatePlayer(Card currentCard)
 {
-	string cardSuit = currentCard.getsuit(); // Note: Found that the suit and rank are swapped through debugging. i.e, cardRank is "Clubs", "Diamonds, etc. cardSuit is "1", "2", "King" etc
-	string cardRank = currentCard.getvalue(); // I just swapped suit and rank in this function.
+	string cardSuit = currentCard.getvalue(); // Note: Found that the suit and rank are swapped through debugging. i.e, cardRank is "Clubs", "Diamonds, etc. cardSuit is "1", "2", "King" etc
+	string cardRank = currentCard.getsuit(); // I just swapped suit and rank in this function.
 	string lastSuit = cardPlayed.getsuit();
 	string lastRank = cardPlayed.getvalue();
 	int cardValue = convertCardType(currentCard);
 	int lastValue = convertCardType(cardPlayed);
-	int playState = 0;
+	int damage = 0;
 	if (cardRank == "Diamonds")
 	{
-		lastValue = cardValue;
-		lastRank = "Diamonds";
+		initialDamage = 20;
 		initialWeapon = cardValue;
-		playState = 0;
 	}
 	else if (cardRank == "Clubs" || cardRank == "Spades")
 	{
-		initialDamage = cardValue;
-		playState = 1;
+	//	std::cout << "Lowest card: " << initialDamage << "  " << "Current Card Value: " << cardValue << std::endl;
+		if (initialDamage == 20)
+		{
+			cardPlayed = currentCard;
+		}
+		if (cardValue > initialDamage)
+		{
+			damage = cardValue;
+		}
+		else if(cardValue <= initialDamage)
+		{
+			initialDamage = cardValue;
+			cardPlayed = currentCard;
+			damage = cardValue - initialWeapon;
+			//std::cout << "Should I be in here? " << std::endl;
+		}
+		if (damage > 0)
+		{
+		//	std::cout << "Dealing damage: " << damage << std::endl;
+			initialHealth = initialHealth - damage;
+		}
 	}
 	else if (cardRank == "Hearts")
-	{
-		playState = 2;
-	}
-	if (playState == 0)
-	{
-		if (initialWeapon < initialDamage)
-		{
-			initialHealth -= (initialDamage - initialWeapon);
-		}
-		else
-		{
-			initialHealth -= 0;
-		}
-	}
-	else if (playState == 1)
-	{
-		if (lastRank == "Diamonds")
-		{
-			initialHealth -= (initialDamage - initialWeapon);
-		}
-		else
-		{
-			initialHealth -= initialDamage;
-		}
-	}
-	else if (playState == 2)
 	{
 		initialHealth += cardValue;
 	}

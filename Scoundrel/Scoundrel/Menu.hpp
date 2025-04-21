@@ -58,6 +58,7 @@ public:
 		showrun = true;
 		diamondweapon = false;
 		lost = false;
+		stacked = false;
 	}
 
 	int updatestate(sf::RenderWindow& theWindow, Deck &maindeck);
@@ -72,6 +73,7 @@ private:
 	bool diamondweapon;
 	bool showrun;
 	bool lost;
+	bool stacked;
 	sf::Sprite lostscreen;
 	sf::Sprite winscreen;
 	Card card1;
@@ -215,16 +217,24 @@ inline void Menu::rungame(sf::RenderWindow& theWindow, Deck &Playdeck)
 			cardspicked++;
 			if (card1.getsuit() == "Diamonds")
 			{
+				stacked = false;
 				diamondweapon = true;
 				weaponcard = card1;
 				weaponcard.setPosition(WEAPON);
+				card1.setPosition(sf::Vector2f(10000, 0));
+			}
+			player1.updatePlayer(card1); // Updates player stats for each card selected, called at card slot 0, 1, 2, 3
+			if (diamondweapon == true && (card1.getsuit() == "Clubs" || card1.getsuit() == "Spades"))
+			{
+				stacked = true;
+				weaponstackcard = player1.getcard();
+				weaponstackcard.setPosition(WEAPON_STACK);
 				card1.setPosition(sf::Vector2f(10000, 0));
 			}
 			else
 			{
 				card1.setPosition(sf::Vector2f(10000, 0));
 			}
-			player1.updatePlayer(card1); // Updates player stats for each card selected, called at card slot 0, 1, 2, 3
 			if (player1.getHealth() <= 0) //Checks health and kick out if you die
 			{
 				state = 3;
@@ -238,9 +248,18 @@ inline void Menu::rungame(sf::RenderWindow& theWindow, Deck &Playdeck)
 			cardspicked++;
 			if (card2.getsuit() == "Diamonds")
 			{
+				stacked = false;
 				diamondweapon = true;
 				weaponcard = card2;
 				weaponcard.setPosition(WEAPON);
+				card2.setPosition(sf::Vector2f(10000, 0));
+			}
+			player1.updatePlayer(card2);
+			if (diamondweapon == true && (card2.getsuit() == "Clubs" || card2.getsuit() == "Spades"))
+			{
+				stacked = true;
+				weaponstackcard = player1.getcard();
+				weaponstackcard.setPosition(WEAPON_STACK);
 				card2.setPosition(sf::Vector2f(10000, 0));
 			}
 			else
@@ -248,7 +267,6 @@ inline void Menu::rungame(sf::RenderWindow& theWindow, Deck &Playdeck)
 				card2.setPosition(sf::Vector2f(10000, 0));
 			}
 
-			player1.updatePlayer(card2);
 			if (player1.getHealth() <= 0) //Checks health and kick out if you die
 			{
 				state = 3;
@@ -261,17 +279,24 @@ inline void Menu::rungame(sf::RenderWindow& theWindow, Deck &Playdeck)
 			cardspicked++;
 			if (card3.getsuit() == "Diamonds")
 			{
+				stacked = false;
 				diamondweapon = true;
 				weaponcard = card3;
 				weaponcard.setPosition(WEAPON);
+				card3.setPosition(sf::Vector2f(10000, 0));
+			}
+			player1.updatePlayer(card3);
+			if (diamondweapon == true && (card3.getsuit() == "Clubs" || card3.getsuit() == "Spades"))
+			{
+				stacked = true;
+				weaponstackcard = player1.getcard();
+				weaponstackcard.setPosition(WEAPON_STACK);
 				card3.setPosition(sf::Vector2f(10000, 0));
 			}
 			else
 			{
 				card3.setPosition(sf::Vector2f(10000, 0));
 			}
-
-			player1.updatePlayer(card3);
 			if (player1.getHealth() <= 0) //Checks health and kick out if you die
 			{
 				state = 3;
@@ -284,17 +309,26 @@ inline void Menu::rungame(sf::RenderWindow& theWindow, Deck &Playdeck)
 			cardspicked++;
 			if (card4.getsuit() == "Diamonds")
 			{
+				stacked = false;
 				diamondweapon = true;
 				weaponcard = card4;
 				weaponcard.setPosition(WEAPON);
 				card4.setPosition(sf::Vector2f(10000, 0));
+			}
+			player1.updatePlayer(card4);
+			if (diamondweapon == true && (card4.getsuit() == "Clubs" || card4.getsuit() == "Spades"))
+			{
+				stacked = true;
+				weaponstackcard = player1.getcard();
+				weaponstackcard.setPosition(WEAPON_STACK);
+				card4.setPosition(sf::Vector2f(10000, 0));
+
 			}
 			else
 			{
 				card4.setPosition(sf::Vector2f(10000, 0));
 			}
 
-			player1.updatePlayer(card4);
 			if (player1.getHealth() <= 0) //Checks health and kick out if you die
 			{
 				state = 3;
@@ -411,6 +445,10 @@ inline void Menu::rungame(sf::RenderWindow& theWindow, Deck &Playdeck)
 	}
 	else
 	{
+		if (stacked == true)
+		{
+			theWindow.draw(weaponstackcard);
+		}
 		theWindow.draw(card1);
 		theWindow.draw(card2);
 		theWindow.draw(card3);
