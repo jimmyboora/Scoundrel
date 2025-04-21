@@ -29,6 +29,7 @@ inline Heart::Heart(string v, string s, const sf::Texture* loadimage)
 {
 	value = v;
 	suit = s;
+	this->setSize(sf::Vector2f(200.f, 300.f));
 	this->setTexture(loadimage);
 }
 

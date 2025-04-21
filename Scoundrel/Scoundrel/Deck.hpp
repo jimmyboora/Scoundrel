@@ -23,7 +23,7 @@ public:
 	void setcards(vector<Card>& newcards);
 	Card drawcard();
 	void regenerate();
-	void insertcard(Card card);
+	void insertcard(Card &card);
 	void printDeck();
 	void printShuffledDeck();
 
@@ -190,11 +190,11 @@ inline void Deck::regenerate()
 			{
 				if (i == 2)
 				{
-					cardDeck.push_back(Club(suits[i], rank[j], &Ctexture[j]));
+					cardDeck.push_back(Club(rank[j], suits[i], &Ctexture[j]));
 				}
 				if (i == 3)
 				{
-					cardDeck.push_back(Spade(suits[i], rank[j], &Stexture[j]));
+					cardDeck.push_back(Spade(rank[j], suits[i], &Stexture[j]));
 
 				}
 			}
@@ -205,18 +205,18 @@ inline void Deck::regenerate()
 			{
 				if (i == 0)
 				{
-					cardDeck.push_back(Diamond(suits[i], rank[j], &Dtexture[j]));
+					cardDeck.push_back(Diamond(rank[j], suits[i], &Dtexture[j]));
 				}
 				if (i == 1)
 				{
-					cardDeck.push_back(Heart(suits[i], rank[j], &Htexture[j]));
+					cardDeck.push_back(Heart(rank[j], suits[i], &Htexture[j]));
 				}
 			}
 		}
 	}
 }
 
-inline void Deck::insertcard(Card card)
+inline void Deck::insertcard(Card &card)
 {
 	cardDeck.push_back(card);
 }

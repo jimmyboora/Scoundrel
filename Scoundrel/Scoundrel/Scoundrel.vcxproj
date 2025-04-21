@@ -155,6 +155,7 @@
     <ClInclude Include="Player.hpp" />
     <ClInclude Include="ScreenButton.hpp" />
     <ClInclude Include="Spade.hpp" />
+    <ClInclude Include="Test.hpp" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="10_of_Clubs.jpg" />
@@ -202,6 +203,7 @@
     <Image Include="J_of_Spades.jpg" />
     <Image Include="K_of_Clubs.jpg" />
     <Image Include="K_of_Spades.jpg" />
+    <Image Include="Lost_Screen.png" />
     <Image Include="Quit.png" />
     <Image Include="Q_of_Clubs.jpg" />
     <Image Include="Q_of_Spades.jpg" />

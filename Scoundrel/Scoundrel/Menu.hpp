@@ -3,6 +3,7 @@
 #include "ScreenButton.hpp"
 #include "Deck.hpp"
 #include "Player.hpp"
+#include <windows.h>
 
 
 //Constant values for card positions
@@ -21,7 +22,10 @@ using namespace CardPositions; //NO STD BS for this
 class Menu
 {
 public:
-	Menu(const sf::Texture& Start, const sf::Texture& Info, const sf::Texture& Exit, const sf::Texture& Blank, const sf::Texture& Runbutton) : start(Start), info(Info), exit(Exit), pos1(Blank),pos2(Blank),pos3(Blank),pos4(Blank),run(Runbutton),weaponstack(Blank) {
+	Menu(const sf::Texture& Start, const sf::Texture& Info, const sf::Texture& Exit, const sf::Texture& Blank, 
+		const sf::Texture& Runbutton, sf::Sprite& losescreen, sf::Sprite& winscreen) : 
+		start(Start), info(Info), exit(Exit), pos1(Blank),pos2(Blank),pos3(Blank),pos4(Blank),run(Runbutton),weaponstack(Blank), lostscreen(losescreen), winscreen(winscreen)
+	{
 		start.getSprite().setPosition(sf::Vector2f(1920 / 2 - 150, 200));
 		start.activate();
 
@@ -46,6 +50,8 @@ public:
 		run.getSprite().scale(sf::Vector2f(200.f / pos1.getSprite().getTexture().getSize().x, 300.f / pos1.getSprite().getTexture().getSize().y));
 		weaponstack.getSprite().scale(sf::Vector2f(200.f / pos1.getSprite().getTexture().getSize().x, 300.f / pos1.getSprite().getTexture().getSize().y));
 
+
+		lostscreen.setScale(sf::Vector2f(1.35, 1.1));
 		state = 0;
 		playstate = -1;
 		cardspicked = 0;
@@ -66,6 +72,8 @@ private:
 	bool diamondweapon;
 	bool showrun;
 	bool lost;
+	sf::Sprite lostscreen;
+	sf::Sprite winscreen;
 	Card card1;
 	Card card2;
 	Card card3; 
@@ -315,7 +323,6 @@ inline void Menu::rungame(sf::RenderWindow& theWindow, Deck &Playdeck)
 			start.activate();
 			info.activate();
 			exit.activate();
-
 		}
 	}
 
@@ -372,8 +379,6 @@ inline void Menu::rungame(sf::RenderWindow& theWindow, Deck &Playdeck)
 		//Place loosing state here
 		lost = true;
 		cardspicked = 0;
-		state = 0;
-		playstate = -1;
 		diamondweapon = false;
 		pos1.deactivate();
 		pos2.deactivate();
@@ -383,23 +388,35 @@ inline void Menu::rungame(sf::RenderWindow& theWindow, Deck &Playdeck)
 		start.activate();
 		info.activate();
 		exit.activate();
-
+		while (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left)) {
+		}
+		state = 4;
+		playstate = 4;
 	}
-
-
-
-		//for (int i = 0; i < Cardslots.size(); i++) {
-		//	Cardslots[i].updateScreenButton(theWindow); // Updates all card slots and their hidden buttons
-		//}
 
 	if (diamondweapon == true)
 	{
 		theWindow.draw(weaponcard);
 	}
+	if (playstate == 4)
+	{
+		theWindow.draw(lostscreen);
+
+		if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left))
+		{
+			theWindow.clear();
+			state = 0;
+			playstate = -1;
+		}
+	}
+	else
+	{
 		theWindow.draw(card1);
 		theWindow.draw(card2);
 		theWindow.draw(card3);
 		theWindow.draw(card4);
+	}
+
 }
 
 inline void Menu::printrules(sf::RenderWindow& theWindow)
