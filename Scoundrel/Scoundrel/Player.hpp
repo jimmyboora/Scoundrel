@@ -58,8 +58,8 @@ void Player::setDamage(int newDamage)
 
 void Player::updatePlayer(Card currentCard)
 {
-	string cardSuit = currentCard.getsuit(); // Note: Found that the suit and rank are swapped through debugging. i.e, cardRank is "Clubs", "Diamonds, etc. cardSuit is "1", "2", "King" etc
-	string cardRank = currentCard.getvalue(); // I just swapped suit and rank in this function. 
+	string cardRank = currentCard.getsuit(); // Note: Found that the suit and rank are swapped through debugging. i.e, cardRank is "Clubs", "Diamonds, etc. cardSuit is "1", "2", "King" etc
+	string cardSuit = currentCard.getvalue(); // I just swapped suit and rank in this function. 
 
 	if (cardRank == "Clubs" || cardRank == "Spades") // Clubs and Spades decrease health
 	{
@@ -129,7 +129,7 @@ void Player::updatePlayer(Card currentCard)
 			initialDamage += 13;
 		}
 	}
-	else if (currentCard.getvalue() == "Hearts") // Hearts add health (20 max health)
+	else if (currentCard.getsuit() == "Hearts") // Hearts add health (20 max health)
 	{
 		if (cardSuit == "Ace")
 		{
@@ -184,7 +184,7 @@ void Player::updatePlayer(Card currentCard)
 			initialHealth += 13;
 		}
 	}
-	else if (currentCard.getvalue() == "Diamonds") // Diamonds add attack
+	else if (currentCard.getsuit() == "Diamonds") // Diamonds add attack
 	{
 
 	}

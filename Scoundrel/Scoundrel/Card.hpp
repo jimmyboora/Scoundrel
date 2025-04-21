@@ -17,7 +17,7 @@ public:
 	//	value = v;
 	//	suit = s;
 	//}
-
+	virtual void setcard(Card newcard);
 	virtual string getvalue();
 	virtual string getsuit();
 
@@ -35,8 +35,15 @@ protected:
 inline Card::Card()
 {
 	this->setSize(sf::Vector2f(200.f, 300.f));
-	string value = "";
-	string suit = "";
+	value = "";
+	suit = "";
+}
+
+inline void Card::setcard(Card newcard)
+{
+	this->setTexture(newcard.getTexture());
+	value = newcard.getvalue();
+	suit = newcard.getsuit();
 }
 
 inline string Card::getvalue()

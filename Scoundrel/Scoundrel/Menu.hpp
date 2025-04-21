@@ -50,6 +50,8 @@ public:
 		playstate = -1;
 		cardspicked = 0;
 		showrun = true;
+		diamondweapon = false;
+		lost = false;
 	}
 
 	int updatestate(sf::RenderWindow& theWindow, Deck &maindeck);
@@ -61,7 +63,9 @@ private:
 	int state; //State 1 is rungame, 2 is Show instructions, and 3 is exit
 	int playstate; //See run game for states
 	int cardspicked;
+	bool diamondweapon;
 	bool showrun;
+	bool lost;
 	Card card1;
 	Card card2;
 	Card card3; 
@@ -99,7 +103,7 @@ inline int Menu::updatestate(sf::RenderWindow& theWindow, Deck& maindeck)
 				maindeck.shuffleDeck();
 				maindeck.printShuffledDeck();
 			}
-			std::cout << "Starting Game";
+			std::cout << "Starting Game" << std::endl;
 		}
 		if (info.updateScreenButton(theWindow))
 		{
@@ -116,7 +120,7 @@ inline int Menu::updatestate(sf::RenderWindow& theWindow, Deck& maindeck)
 	{
 		//Start Game
 		rungame(theWindow, maindeck);
-		if (maindeck.getcards().size() > 1)
+		if (maindeck.getcards().size() > 1 && lost == false)
 		{
 			state = 4;
 		}
@@ -153,13 +157,13 @@ inline void Menu::rungame(sf::RenderWindow& theWindow, Deck &Playdeck)
 	//Run -> (State 0) or Select card -> (State 1)
 	if (playstate == -1 && Playdeck.getcards().size() > 1)
 	{
-		card1 = Playdeck.drawcard();
+		card1.setcard(Playdeck.drawcard());
 		card1.setPosition(POSITION_1);
 
-		card2 = Playdeck.drawcard();
+		card2.setcard(Playdeck.drawcard());
 		card2.setPosition(POSITION_2);
 
-		card3 = Playdeck.drawcard();
+		card3.setcard(Playdeck.drawcard());
 		card3.setPosition(POSITION_3);
 
 		card4 = Playdeck.drawcard();
@@ -187,7 +191,7 @@ inline void Menu::rungame(sf::RenderWindow& theWindow, Deck &Playdeck)
 		{
 			run.deactivate();
 		}
-		if (run.updateScreenButton(theWindow)) //Draws new cards for run state
+		if (showrun == true && run.updateScreenButton(theWindow)) //Draws new cards for run state
 		{
 			Playdeck.insertcard(card1);
 			Playdeck.insertcard(card2);
@@ -201,8 +205,22 @@ inline void Menu::rungame(sf::RenderWindow& theWindow, Deck &Playdeck)
 		{
 			pos1.deactivate();
 			cardspicked++;
-			card1.setPosition(sf::Vector2f(10000, 0));
+			if (card1.getsuit() == "Diamonds")
+			{
+				diamondweapon = true;
+				weaponcard = card1;
+				weaponcard.setPosition(WEAPON);
+				card1.setPosition(sf::Vector2f(10000, 0));
+			}
+			else
+			{
+				card1.setPosition(sf::Vector2f(10000, 0));
+			}
 			player1.updatePlayer(card1); // Updates player stats for each card selected, called at card slot 0, 1, 2, 3
+			if (player1.getHealth() <= 0) //Checks health and kick out if you die
+			{
+				state = 3;
+			}
 			showrun = false;
 
 		}
@@ -210,24 +228,69 @@ inline void Menu::rungame(sf::RenderWindow& theWindow, Deck &Playdeck)
 		{
 			pos2.deactivate();
 			cardspicked++;
-			card2.setPosition(sf::Vector2f(10000, 0));
+			if (card2.getsuit() == "Diamonds")
+			{
+				diamondweapon = true;
+				weaponcard = card2;
+				weaponcard.setPosition(WEAPON);
+				card2.setPosition(sf::Vector2f(10000, 0));
+			}
+			else
+			{
+				card2.setPosition(sf::Vector2f(10000, 0));
+			}
+
 			player1.updatePlayer(card2);
+			if (player1.getHealth() <= 0) //Checks health and kick out if you die
+			{
+				state = 3;
+			}
 			showrun = false;
 		}
 		if (Cardslots[2].updateScreenButton(theWindow))
 		{
 			pos3.deactivate();
 			cardspicked++;
-			card3.setPosition(sf::Vector2f(10000, 0));
+			if (card3.getsuit() == "Diamonds")
+			{
+				diamondweapon = true;
+				weaponcard = card3;
+				weaponcard.setPosition(WEAPON);
+				card3.setPosition(sf::Vector2f(10000, 0));
+			}
+			else
+			{
+				card3.setPosition(sf::Vector2f(10000, 0));
+			}
+
 			player1.updatePlayer(card3);
+			if (player1.getHealth() <= 0) //Checks health and kick out if you die
+			{
+				state = 3;
+			}
 			showrun = false;
 		}
 		if (Cardslots[3].updateScreenButton(theWindow))
 		{
 			pos4.deactivate();
 			cardspicked++;
-			card4.setPosition(sf::Vector2f(10000, 0));
+			if (card4.getsuit() == "Diamonds")
+			{
+				diamondweapon = true;
+				weaponcard = card4;
+				weaponcard.setPosition(WEAPON);
+				card4.setPosition(sf::Vector2f(10000, 0));
+			}
+			else
+			{
+				card4.setPosition(sf::Vector2f(10000, 0));
+			}
+
 			player1.updatePlayer(card4);
+			if (player1.getHealth() <= 0) //Checks health and kick out if you die
+			{
+				state = 3;
+			}
 			showrun = false;
 		}
 		if (cardspicked == 3 && Playdeck.getcards().size() > 1) // Kicks out of state once 3 cards are picked
@@ -243,6 +306,7 @@ inline void Menu::rungame(sf::RenderWindow& theWindow, Deck &Playdeck)
 			cardspicked = 0;
 			state = 0;
 			playstate = -1;
+			diamondweapon = false;
 			pos1.deactivate();
 			pos2.deactivate();
 			pos3.deactivate();
@@ -301,10 +365,37 @@ inline void Menu::rungame(sf::RenderWindow& theWindow, Deck &Playdeck)
 
 		////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+	//Lost State
+
+	if (state == 3)
+	{
+		//Place loosing state here
+		lost = true;
+		cardspicked = 0;
+		state = 0;
+		playstate = -1;
+		diamondweapon = false;
+		pos1.deactivate();
+		pos2.deactivate();
+		pos3.deactivate();
+		pos4.deactivate();
+		run.deactivate();
+		start.activate();
+		info.activate();
+		exit.activate();
+
+	}
+
+
 
 		//for (int i = 0; i < Cardslots.size(); i++) {
 		//	Cardslots[i].updateScreenButton(theWindow); // Updates all card slots and their hidden buttons
 		//}
+
+	if (diamondweapon == true)
+	{
+		theWindow.draw(weaponcard);
+	}
 		theWindow.draw(card1);
 		theWindow.draw(card2);
 		theWindow.draw(card3);
