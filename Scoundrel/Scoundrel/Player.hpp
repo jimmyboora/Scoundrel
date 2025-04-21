@@ -19,6 +19,7 @@ class Player
 public:
 	Player();
 	//~Player();
+	void fistfight(Card currentcard);
 	int getHealth();
 	int getDamage();
 	int getWeapon();
@@ -42,6 +43,13 @@ Player::Player()
 	initialDamage = 0;
 	initialWeapon = 0;
 	cardPlayed = Card();
+}
+
+void Player::fistfight(Card currentcard)
+{
+	int damage = convertCardType(currentcard);
+	initialHealth = initialHealth - damage;
+	std::cout << "Health: " << initialHealth << std::endl;
 }
 
 int Player::getHealth()

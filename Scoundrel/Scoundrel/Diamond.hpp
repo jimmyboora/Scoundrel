@@ -25,7 +25,7 @@ inline Diamond::Diamond()
 	suit = '0';
 }
 
-inline Diamond::Diamond(string v, string s, const sf::Texture* loadimage) //
+inline Diamond::Diamond(string v, string s, const sf::Texture* loadimage)
 {
 	value = v;
 	suit = s;
