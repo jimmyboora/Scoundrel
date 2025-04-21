@@ -181,6 +181,7 @@ inline Card Deck::drawcard()
 
 inline void Deck::regenerate()
 {
+
 	int i = 0, j = 0;
 	for (i = 0; i < 4; i++)
 	{

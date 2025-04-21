@@ -12,14 +12,15 @@ class Card : public sf::RectangleShape
 {
 public:
 	Card();
-	//Card(string v, string s) : sf::RectangleShape(sf::Vector2f(100.f, 150.f))
-	//{
-	//	value = v;
-	//	suit = s;
-	//}
-	void setcard(Card newcard);
+	Card(string v, string s) : sf::RectangleShape(sf::Vector2f(100.f, 150.f))
+	{
+		value = v;
+		suit = s;
+	}
+	virtual void setcard(Card newcard);
 	virtual string getvalue();
 	virtual string getsuit();
+
 
 	virtual void setValue(const string& newValue);
 	virtual void setSuit(const string& newSuit);
