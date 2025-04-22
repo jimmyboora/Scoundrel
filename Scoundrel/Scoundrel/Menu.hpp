@@ -244,7 +244,7 @@ inline void Menu::rungame(sf::RenderWindow& theWindow, Deck &Playdeck)
 			}
 			if (player1.getHealth() <= 0) //Checks health and kick out if you die
 			{
-				state = 3;
+				playstate = 3;
 			}
 			showrun = false;
 
@@ -273,7 +273,7 @@ inline void Menu::rungame(sf::RenderWindow& theWindow, Deck &Playdeck)
 			}
 			if (player1.getHealth() <= 0) //Checks health and kick out if you die
 			{
-				state = 3;
+				playstate = 3;
 			}
 			showrun = false;
 		}
