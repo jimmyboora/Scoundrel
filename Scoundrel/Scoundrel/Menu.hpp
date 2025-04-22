@@ -23,8 +23,8 @@ class Menu
 {
 public:
 	Menu(const sf::Texture& Start, const sf::Texture& Info, const sf::Texture& Exit, const sf::Texture& Blank, 
-		const sf::Texture& Runbutton, sf::Sprite& losescreen, sf::Sprite& winscreen) : 
-		start(Start), info(Info), exit(Exit), pos1(Blank),pos2(Blank),pos3(Blank),pos4(Blank),run(Runbutton),fistfight(Runbutton), weaponfight(Runbutton), lostscreen(losescreen), winscreen(winscreen)
+		const sf::Texture& Runbutton, sf::Sprite& losescreen, sf::Sprite& winscreens) : 
+		start(Start), info(Info), exit(Exit), pos1(Blank),pos2(Blank),pos3(Blank),pos4(Blank),run(Runbutton),fistfight(Runbutton), weaponfight(Runbutton), lostscreen(losescreen), winscreen(winscreens)
 	{
 		start.getSprite().setPosition(sf::Vector2f(1920 / 2 - 150, 200));
 		start.activate();
@@ -53,12 +53,14 @@ public:
 
 
 		lostscreen.setScale(sf::Vector2f(1.35, 1.1));
+		winscreen.setScale(sf::Vector2f(1.35, 1.1));
 		state = 0;
 		playstate = -1;
 		cardspicked = 0;
 		showrun = true;
 		diamondweapon = false;
 		lost = false;
+		win = false;
 		stacked = false;
 		fist = 0;
 	}
@@ -76,6 +78,7 @@ private:
 	bool diamondweapon;
 	bool showrun;
 	bool lost;
+	bool win;
 	bool stacked;
 	sf::Sprite lostscreen;
 	sf::Sprite winscreen;
@@ -109,6 +112,7 @@ inline int Menu::updatestate(sf::RenderWindow& theWindow, Deck& maindeck)
 			//std::cout << "Entering Game" << std::endl;
 			state = 1;
 			lost = false;
+			win = false;
 			start.deactivate();
 			info.deactivate();
 			exit.deactivate();
@@ -136,7 +140,7 @@ inline int Menu::updatestate(sf::RenderWindow& theWindow, Deck& maindeck)
 	{
 		//Start Game
 		rungame(theWindow, maindeck);
-		if (maindeck.getcards().size() > 1 && lost == false)
+		if (maindeck.getcards().size() > 1 && lost == false && win == false)
 		{
 			state = 4;
 		}
@@ -342,19 +346,21 @@ inline void Menu::rungame(sf::RenderWindow& theWindow, Deck &Playdeck)
 		if (cardspicked == 4)
 		{
 			//Place winning screen here
-			std::cout << "WINNER";
-			cardspicked = 0;
-			state = 0;
-			playstate = -1;
-			diamondweapon = false;
-			pos1.deactivate();
-			pos2.deactivate();
-			pos3.deactivate();
-			pos4.deactivate();
-			run.deactivate();
-			start.activate();
-			info.activate();
-			exit.activate();
+			std::cout << "WINNER" << std::endl;
+			win = true;
+			playstate = 7;
+			//cardspicked = 0;
+			//state = 0;
+			//playstate = -1;
+			//diamondweapon = false;
+			//pos1.deactivate();
+			//pos2.deactivate();
+			//pos3.deactivate();
+			//pos4.deactivate();
+			//run.deactivate();
+			//start.activate();
+			//info.activate();
+			//exit.activate();
 		}
 	}
 
@@ -459,10 +465,6 @@ inline void Menu::rungame(sf::RenderWindow& theWindow, Deck &Playdeck)
 		}
 	}
 
-	//if (player1.getHealth() <= 0 && playstate != 3) //Checks health and kick out if you die
-	//{
-	//	playstate = 3;
-	//}
 	//Lost State
 
 	if (playstate == 3)
@@ -489,13 +491,48 @@ inline void Menu::rungame(sf::RenderWindow& theWindow, Deck &Playdeck)
 		playstate = 4;
 	}
 
+
+	// Win state
+
+	if (playstate == 7)
+	{
+		win = true;
+		cardspicked = 0;
+		diamondweapon = false;
+		stacked = false;
+		player1.setDamage(0);
+		player1.setWeapon(0);
+		pos1.deactivate();
+		pos2.deactivate();
+		pos3.deactivate();
+		pos4.deactivate();
+		run.deactivate();
+		start.activate();
+		info.activate();
+		exit.activate();
+		player1.setHealth(20);
+		while (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left)) {
+		}
+		state = 4;
+		playstate = 4;
+	}
+
+	//////// Drawing stuff //////////
+
 	if (diamondweapon == true)
 	{
 		theWindow.draw(weaponcard);
 	}
 	if (playstate == 4)
 	{
+		if (lost == true)
+		{
 		theWindow.draw(lostscreen);
+		}
+		else if (win == true)
+		{
+		theWindow.draw(winscreen);
+		}
 
 		if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left))
 		{

@@ -205,6 +205,9 @@
     <Image Include="Lost_Screen.png">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="Win_Screen.png">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <Font Include="ARIAL.TTF">

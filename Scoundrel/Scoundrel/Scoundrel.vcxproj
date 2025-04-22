@@ -209,6 +209,7 @@
     <Image Include="Q_of_Spades.jpg" />
     <Image Include="Run_Button.png" />
     <Image Include="StartButton.png" />
+    <Image Include="Win_Screen.png" />
   </ItemGroup>
   <ItemGroup>
     <Font Include="ARIAL.TTF" />
