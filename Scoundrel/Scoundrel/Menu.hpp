@@ -108,6 +108,7 @@ inline int Menu::updatestate(sf::RenderWindow& theWindow, Deck& maindeck)
 		{
 			//std::cout << "Entering Game" << std::endl;
 			state = 1;
+			lost = false;
 			start.deactivate();
 			info.deactivate();
 			exit.deactivate();
@@ -166,19 +167,22 @@ inline void Menu::rungame(sf::RenderWindow& theWindow, Deck &Playdeck)
 	}
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//	std::cout << "Running" << std::endl;
 
 	//Start state = 0
 	//First phase draw 4
 	//Run -> (State 0) or Select card -> (State 1)
 	if (playstate == -1 && Playdeck.getcards().size() > 1)
 	{
-		card1.setcard(Playdeck.drawcard());
+		std::cout << "Drawing" << std::endl;
+
+		card1 = Playdeck.drawcard();
 		card1.setPosition(POSITION_1);
 
-		card2.setcard(Playdeck.drawcard());
+		card2 = Playdeck.drawcard();
 		card2.setPosition(POSITION_2);
 
-		card3.setcard(Playdeck.drawcard());
+		card3 = Playdeck.drawcard();
 		card3.setPosition(POSITION_3);
 
 		card4 = Playdeck.drawcard();
@@ -329,7 +333,7 @@ inline void Menu::rungame(sf::RenderWindow& theWindow, Deck &Playdeck)
 			}
 			showrun = false;
 		}
-		if (cardspicked == 3 && Playdeck.getcards().size() > 1 && player1.getHealth() >= 0) // Kicks out of state once 3 cards are picked
+		if (cardspicked == 3 && Playdeck.getcards().size() > 1 && player1.getHealth() > 0) // Kicks out of state once 3 cards are picked
 		{
 			playstate = 2;
 			cardspicked = 0;
@@ -467,6 +471,9 @@ inline void Menu::rungame(sf::RenderWindow& theWindow, Deck &Playdeck)
 		lost = true;
 		cardspicked = 0;
 		diamondweapon = false;
+		stacked = false;
+		player1.setDamage(0);
+		player1.setWeapon(0);
 		pos1.deactivate();
 		pos2.deactivate();
 		pos3.deactivate();
@@ -475,6 +482,7 @@ inline void Menu::rungame(sf::RenderWindow& theWindow, Deck &Playdeck)
 		start.activate();
 		info.activate();
 		exit.activate();
+		player1.setHealth(20);
 		while (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left)) {
 		}
 		state = 4;
