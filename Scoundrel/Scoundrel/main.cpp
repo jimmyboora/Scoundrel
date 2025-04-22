@@ -33,13 +33,17 @@ int main()
     losescreen.loadFromFile("Lost_Screen.png");
     sf::Sprite lost(losescreen);
 
+    sf::Texture winscreen;
+    winscreen.loadFromFile("Win_Screen.png");
+    sf::Sprite win(winscreen);
+
 
     startButtonTexture.loadFromFile("StartButton.png");
     infoButtonTexture.loadFromFile("info_button.png");
     exitButtonTexture.loadFromFile("Quit.png");
     cardslot.loadFromFile("Clear_Space.png");
     runbutton.loadFromFile("Run_Button.png");
-    Menu runit(startButtonTexture, infoButtonTexture, exitButtonTexture, cardslot,runbutton, lost, lost);
+    Menu runit(startButtonTexture, infoButtonTexture, exitButtonTexture, cardslot,runbutton, lost, win);
 
  /*   startButtonTexture.loadFromFile("StartButton.png");
     ScreenButton startButton(startButtonTexture);
