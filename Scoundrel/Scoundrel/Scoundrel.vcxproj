@@ -198,6 +198,7 @@
     <Image Include="A_of_Spades.jpg" />
     <Image Include="Background.jpg" />
     <Image Include="Clear_Space.png" />
+    <Image Include="Fist_Button.png" />
     <Image Include="info_button.png" />
     <Image Include="J_of_Clubs.jpg" />
     <Image Include="J_of_Spades.jpg" />
@@ -209,6 +210,7 @@
     <Image Include="Q_of_Spades.jpg" />
     <Image Include="Run_Button.png" />
     <Image Include="StartButton.png" />
+    <Image Include="Weapon_Button.png" />
     <Image Include="Win_Screen.png" />
   </ItemGroup>
   <ItemGroup>

@@ -208,6 +208,12 @@
     <Image Include="Win_Screen.png">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="Fist_Button.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Weapon_Button.png">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <Font Include="ARIAL.TTF">
