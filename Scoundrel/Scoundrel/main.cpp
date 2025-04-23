@@ -5,6 +5,7 @@
 #include "Club.hpp"
 #include "Heart.hpp"
 #include "Menu.hpp"
+#include "Test.hpp"
 #include <SFML/Audio.hpp>
 #include <SFML/System.hpp>
 #include "Test.hpp"
@@ -13,11 +14,12 @@ int main()
 {
     std::srand((unsigned int)std::time(nullptr));
     Deck cardDeck1;
+    Test test1;
     cardDeck1.printDeck();
     std::cout << "--------------------------------------------- Shuffling Deck ------------------------------------------------" << std::endl;
     cardDeck1.shuffleDeck();
     cardDeck1.printShuffledDeck();
-
+    test1.test_all();
     int exit = 0;
     sf::RenderWindow window(sf::VideoMode({ 1920, 1080 }), "Scoundrel");
     sf::CircleShape shape(100.f);
