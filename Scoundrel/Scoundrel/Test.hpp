@@ -106,7 +106,7 @@ inline bool Test::test_lastenemy()
 
 void Test::test_all(sf::RenderWindow& window)
 {
-	int success1 = 0, success2 = 0, success3 = 0, success4 = 0, success5 = 0, success6 = 0;
+	int success1 = 0, success2 = 0, success3 = 0, success4 = 0, success5 = 0, success6 = 0, success7 = 0, success8 = 0;
 	success1 = test_shuffle();
 	success2 = test_diamond();
 	success3 = test_heart();
