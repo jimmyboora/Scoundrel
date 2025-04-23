@@ -8,7 +8,7 @@
 #include "Test.hpp"
 #include <SFML/Audio.hpp>
 #include <SFML/System.hpp>
-
+#include "Test.hpp"
 
 int main()
 {
@@ -19,9 +19,10 @@ int main()
     std::cout << "--------------------------------------------- Shuffling Deck ------------------------------------------------" << std::endl;
     cardDeck1.shuffleDeck();
     cardDeck1.printShuffledDeck();
-    test1.test_all();
     int exit = 0;
     sf::RenderWindow window(sf::VideoMode({ 1920, 1080 }), "Scoundrel");
+    test1.test_all(window);
+
     sf::CircleShape shape(100.f);
     shape.setFillColor(sf::Color::Green);
 
@@ -74,7 +75,6 @@ int main()
     sf::Vector2f Position4 = { ((1920 / 2) + 500) - 100, 200 };
     sf::Vector2f UserCard = { (1920 / 2) - 100, 700 };
     sf::Vector2f UserStack = { (1920 / 2) - 50, 725 };
-
 
 
     sf::SoundBuffer buffer;

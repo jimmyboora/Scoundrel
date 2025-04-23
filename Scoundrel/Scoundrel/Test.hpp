@@ -1,15 +1,12 @@
-#pragma once
 
+#pragma once
+#include "Menu.hpp"
 #include <string>
 #include <SFML/Graphics.hpp>
 #include <fstream>
 #include <iostream>
 #include "Deck.hpp"
 #include "Card.hpp"
-#include "Heart.hpp"
-#include "Diamond.hpp"
-#include "Club.hpp"
-#include "Spade.hpp"
 
 #define RED "\033[0;31m"
 #define CYN "\033[0;36m"
@@ -17,10 +14,14 @@
 using std::string;
 using std::vector;
 
+
 class Test
 {
 public:
-	void test_all();
+	bool test_loss(sf::RenderWindow& window);
+	bool test_win(sf::RenderWindow& window);
+	bool test_lastenemy();
+	void test_all(sf::RenderWindow& window);
 	int test_shuffle();
 	int test_diamond();
 	int test_club();
@@ -34,7 +35,76 @@ private:
 
 };
 
-void Test::test_all()
+
+inline bool Test::test_loss(sf::RenderWindow& window)
+{
+
+	Deck cardDeck1;
+	cardDeck1.shuffleDeck();
+	sf::Texture filler;
+	sf::Sprite sfiller(filler);
+	Menu start(filler, filler, filler, filler, filler, sfiller, sfiller, filler, filler,filler);
+	start.getplayer().setHealth(0);
+	start.setplaystate(3);
+	start.rungame(window, cardDeck1);
+	if (start.getlost())
+	{
+		std::cout << "PASS" << std::endl;
+		return true;
+	}
+
+	return false;
+}
+
+inline bool Test::test_win(sf::RenderWindow& window)
+{
+	Deck cardDeck1;
+	cardDeck1.shuffleDeck();
+	sf::Texture filler;
+	sf::Sprite sfiller(filler);
+	Menu start(filler, filler, filler, filler, filler, sfiller, sfiller, filler, filler, filler);
+	start.setplaystate(7);
+	start.rungame(window, cardDeck1);
+	if (start.getwin())
+	{
+		std::cout << "PASS" << std::endl;
+		return true;
+	}
+
+
+
+	return false;
+}
+
+inline bool Test::test_lastenemy()
+{
+	Card test;
+	Player player1;
+	test.setValue("10");
+	test.setSuit("Diamonds");
+	player1.updatePlayer(test);
+
+	test.setValue("6");
+	test.setSuit("Spades");
+	player1.updatePlayer(test);
+
+	test.setValue("10");
+	test.setSuit("Spades");
+	player1.updatePlayer(test);
+
+	if (player1.getHealth() == 10)
+	{
+		std::cout << "PASS" << std::endl;
+		return true;
+	}
+
+
+
+	return false;
+}
+
+
+void Test::test_all(sf::RenderWindow& window)
 {
 	int success1 = 0, success2 = 0, success3 = 0, success4 = 0, success5 = 0, success6 = 0;
 	success1 = test_shuffle();
@@ -42,6 +112,10 @@ void Test::test_all()
 	success3 = test_heart();
 	success4 = test_club();
 	success5 = test_spade();
+	success6 = test_loss(window);
+	success7 = test_win(window);
+	success8 = test_lastenemy();
+
 	std::cout << "TESTING SHUFFLE: " << std::endl;
 	if (success1 == 1)
 	{
@@ -87,6 +161,34 @@ void Test::test_all()
 	{
 		std::cout << RED "FAILED" << std::endl;
 	}
+  	std::cout << "TESTING LOSS: " << std::endl;
+	if (success6 == 1)
+	{
+		std::cout << CYN "PASSED" << std::endl;
+	}
+	else
+	{
+		std::cout << RED "FAILED" << std::endl;
+	}
+	std::cout << "TESTING WIN: " << std::endl;
+	if (success7 == 1)
+	{
+		std::cout << CYN "PASSED" << std::endl;
+	}
+	else
+	{
+		std::cout << RED "FAILED" << std::endl;
+	}
+  	std::cout << "TESTING STACKED WEAPON: " << std::endl;
+	if (success8 == 1)
+	{
+		std::cout << CYN "PASSED" << std::endl;
+	}
+	else
+	{
+		std::cout << RED "FAILED" << std::endl;
+	}
+
 }
 
 int Test::test_shuffle()
@@ -195,3 +297,4 @@ int Test::test_stats()
 {
 	return 0;
 }
+
