@@ -71,7 +71,10 @@ public:
 	int updatestate(sf::RenderWindow& theWindow, Deck &maindeck);
 	void rungame(sf::RenderWindow& theWindow,Deck &Playdeck);
 	void printrules(sf::RenderWindow& theWindow);
-
+	Player& getplayer();
+	void setplaystate(int plystate);
+	bool getlost();
+	bool getwin();
 
 private:
 	int state; //State 1 is rungame, 2 is Show instructions, and 3 is exit
@@ -595,4 +598,24 @@ inline void Menu::printrules(sf::RenderWindow& theWindow)
 		state = 0;
 	}
 
+}
+
+inline Player& Menu::getplayer()
+{
+	return player1;
+}
+
+inline void Menu::setplaystate(int plystate)
+{
+	playstate = plystate;
+}
+
+inline bool Menu::getlost()
+{
+	return lost;
+}
+
+inline bool Menu::getwin()
+{
+	return win;
 }

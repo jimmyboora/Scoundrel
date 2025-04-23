@@ -7,7 +7,7 @@
 #include "Menu.hpp"
 #include <SFML/Audio.hpp>
 #include <SFML/System.hpp>
-
+#include "Test.hpp"
 
 int main()
 {
@@ -73,7 +73,10 @@ int main()
     sf::Vector2f UserCard = { (1920 / 2) - 100, 700 };
     sf::Vector2f UserStack = { (1920 / 2) - 50, 725 };
 
-
+    Test tester;
+    tester.test_loss(window);
+    tester.test_win(window);
+    tester.test_lastenemy();
 
     sf::SoundBuffer buffer;
     buffer.loadFromFile("Roblox.wav");
