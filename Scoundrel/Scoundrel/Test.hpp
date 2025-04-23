@@ -21,7 +21,7 @@ public:
 	bool test_loss(sf::RenderWindow& window);
 	bool test_win(sf::RenderWindow& window);
 	bool test_lastenemy();
-	void test_all();
+	void test_all(sf::RenderWindow& window);
 	int test_shuffle();
 	int test_diamond();
 	int test_club();
@@ -104,12 +104,16 @@ inline bool Test::test_lastenemy()
 }
 
 
-void Test::test_all()
+void Test::test_all(sf::RenderWindow& window)
 {
 	int success1 = 0, success2 = 0, success3 = 0, success4 = 0, success5 = 0, success6 = 0;
 	success1 = test_shuffle();
 	success2 = test_diamond();
 	success3 = test_heart();
+	success4 = test_loss(window);
+	success5 = test_win(window);
+	success6 = test_lastenemy();
+
 	std::cout << "TESTING SHUFFLE: " << std::endl;
 	if (success1 == 1)
 	{
@@ -130,6 +134,34 @@ void Test::test_all()
 	}
 	std::cout << "TESTING Heart: " << std::endl;
 	if (success3 == 1)
+	{
+		std::cout << CYN "PASSED" << std::endl;
+	}
+	else
+	{
+		std::cout << RED "FAILED" << std::endl;
+	}
+	std::cout << "TESTING LOSS: " << std::endl;
+
+	if (success4 == 1)
+	{
+		std::cout << CYN "PASSED" << std::endl;
+	}
+	else
+	{
+		std::cout << RED "FAILED" << std::endl;
+	}
+	std::cout << "TESTING WIN: " << std::endl;
+	if (success5 == 1)
+	{
+		std::cout << CYN "PASSED" << std::endl;
+	}
+	else
+	{
+		std::cout << RED "FAILED" << std::endl;
+	}
+	std::cout << "TESTING STACKED CARD: " << std::endl;
+	if (success6 == 1)
 	{
 		std::cout << CYN "PASSED" << std::endl;
 	}
