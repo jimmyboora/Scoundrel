@@ -200,6 +200,7 @@
     <Image Include="Clear_Space.png" />
     <Image Include="Fist_Button.png" />
     <Image Include="info_button.png" />
+    <Image Include="Instruction_Menu.png" />
     <Image Include="J_of_Clubs.jpg" />
     <Image Include="J_of_Spades.jpg" />
     <Image Include="K_of_Clubs.jpg" />
@@ -215,6 +216,9 @@
   </ItemGroup>
   <ItemGroup>
     <Font Include="ARIAL.TTF" />
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="Roblox.wav" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
