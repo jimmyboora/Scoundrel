@@ -214,10 +214,18 @@
     <Image Include="Weapon_Button.png">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="Instruction_Menu.png">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <Font Include="ARIAL.TTF">
       <Filter>Resource Files</Filter>
     </Font>
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="Roblox.wav">
+      <Filter>Resource Files</Filter>
+    </Media>
   </ItemGroup>
 </Project>
