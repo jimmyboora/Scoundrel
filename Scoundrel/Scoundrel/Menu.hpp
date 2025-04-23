@@ -172,6 +172,7 @@ inline void Menu::rungame(sf::RenderWindow& theWindow, Deck &Playdeck)
 	sf::Font font("ARIAL.TTF");
 	sf::Text text(font);
 
+//	std::cout << Playdeck.getcards().size() << std::endl;
 	if (state == 1) // Ensure if you hold left click for too long it wont pick a card
 	{
 		while (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left)) {

@@ -23,9 +23,6 @@ int main()
     sf::RenderWindow window(sf::VideoMode({ 1920, 1080 }), "Scoundrel");
     test1.test_all(window);
 
-    sf::CircleShape shape(100.f);
-    shape.setFillColor(sf::Color::Green);
-
     // Tester code for button
     sf::Texture startButtonTexture;
     sf::Texture infoButtonTexture;
