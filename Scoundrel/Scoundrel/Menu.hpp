@@ -4,7 +4,8 @@
 #include "Deck.hpp"
 #include "Player.hpp"
 #include <windows.h>
-
+#include <SFML/Audio.hpp>
+#include <SFML/System.hpp>
 
 //Constant values for card positions
 namespace CardPositions {
@@ -23,8 +24,8 @@ class Menu
 {
 public:
 	Menu(const sf::Texture& Start, const sf::Texture& Info, const sf::Texture& Exit, const sf::Texture& Blank, 
-		const sf::Texture& Runbutton, sf::Sprite& losescreen, sf::Sprite& winscreens, sf::Texture& fistbtn, sf::Texture& weaponbtn) : 
-		start(Start), info(Info), exit(Exit), pos1(Blank),pos2(Blank),pos3(Blank),pos4(Blank),run(Runbutton),fistfight(fistbtn), weaponfight(weaponbtn), lostscreen(losescreen), winscreen(winscreens)
+		const sf::Texture& Runbutton, sf::Sprite& losescreen, sf::Sprite& winscreens, sf::Texture& fistbtn, sf::Texture& weaponbtn, sf::Texture& rules) : 
+		start(Start), info(Info), exit(Exit), pos1(Blank),pos2(Blank),pos3(Blank),pos4(Blank),run(Runbutton),fistfight(fistbtn), weaponfight(weaponbtn), lostscreen(losescreen), winscreen(winscreens), Rules(rules)
 	{
 		start.getSprite().setPosition(sf::Vector2f(1920 / 2 - 150, 200));
 		start.activate();
@@ -84,6 +85,7 @@ private:
 	bool stacked;
 	sf::Sprite lostscreen;
 	sf::Sprite winscreen;
+	sf::Sprite Rules;
 	Card card1;
 	Card card2;
 	Card card3; 
@@ -472,6 +474,7 @@ inline void Menu::rungame(sf::RenderWindow& theWindow, Deck &Playdeck)
 
 	if (playstate == 3)
 	{
+
 		//Place loosing state here
 		lost = true;
 		cardspicked = 0;
@@ -581,22 +584,15 @@ inline void Menu::rungame(sf::RenderWindow& theWindow, Deck &Playdeck)
 
 inline void Menu::printrules(sf::RenderWindow& theWindow)
 {
-	sf::Font font("ARIAL.TTF");
+	theWindow.draw(Rules);
+	run.activate();
+	run.getSprite().setPosition(sf::Vector2f(1650, 850));
 
-	sf::Text text(font); // a font is required to make a text object
+	if (run.updateScreenButton(theWindow))
+	{
+		run.deactivate();
+		run.getSprite().setPosition(sf::Vector2f((1920 / 2) - 120, 475));
+		state = 0;
+	}
 
-	// set the string to display
-	text.setString("Welcome to Scoundrel!\n\n\nThe Rules of this game are as follows:\n\nHEARTS are health, DIAMONDS are weapons, and SPADES/CLUBS are enemies");
-
-	// set the character size
-	text.setCharacterSize(50); // in pixels, not points!
-
-	// set the color
-	text.setFillColor(sf::Color::Black);
-
-	// set the text style
-	text.setStyle(sf::Text::Bold | sf::Text::Underlined);
-
-	// inside the main loop, between window.clear() and window.display()
-	theWindow.draw(text);
 }
