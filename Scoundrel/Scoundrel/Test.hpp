@@ -110,9 +110,11 @@ void Test::test_all(sf::RenderWindow& window)
 	success1 = test_shuffle();
 	success2 = test_diamond();
 	success3 = test_heart();
-	success4 = test_loss(window);
-	success5 = test_win(window);
-	success6 = test_lastenemy();
+	success4 = test_club();
+	success5 = test_spade();
+	success6 = test_loss(window);
+	success7 = test_win(window);
+	success8 = test_lastenemy();
 
 	std::cout << "TESTING SHUFFLE: " << std::endl;
 	if (success1 == 1)
@@ -132,7 +134,7 @@ void Test::test_all(sf::RenderWindow& window)
 	{
 		std::cout << RED "FAILED" << std::endl;
 	}
-	std::cout << "TESTING Heart: " << std::endl;
+	std::cout << "TESTING HEART: " << std::endl;
 	if (success3 == 1)
 	{
 		std::cout << CYN "PASSED" << std::endl;
@@ -141,8 +143,7 @@ void Test::test_all(sf::RenderWindow& window)
 	{
 		std::cout << RED "FAILED" << std::endl;
 	}
-	std::cout << "TESTING LOSS: " << std::endl;
-
+	std::cout << "TESTING CLUB: " << std::endl;
 	if (success4 == 1)
 	{
 		std::cout << CYN "PASSED" << std::endl;
@@ -151,7 +152,7 @@ void Test::test_all(sf::RenderWindow& window)
 	{
 		std::cout << RED "FAILED" << std::endl;
 	}
-	std::cout << "TESTING WIN: " << std::endl;
+	std::cout << "TESTING SPADE: " << std::endl;
 	if (success5 == 1)
 	{
 		std::cout << CYN "PASSED" << std::endl;
@@ -160,7 +161,7 @@ void Test::test_all(sf::RenderWindow& window)
 	{
 		std::cout << RED "FAILED" << std::endl;
 	}
-	std::cout << "TESTING STACKED CARD: " << std::endl;
+  	std::cout << "TESTING LOSS: " << std::endl;
 	if (success6 == 1)
 	{
 		std::cout << CYN "PASSED" << std::endl;
@@ -169,6 +170,25 @@ void Test::test_all(sf::RenderWindow& window)
 	{
 		std::cout << RED "FAILED" << std::endl;
 	}
+	std::cout << "TESTING WIN: " << std::endl;
+	if (success7 == 1)
+	{
+		std::cout << CYN "PASSED" << std::endl;
+	}
+	else
+	{
+		std::cout << RED "FAILED" << std::endl;
+	}
+  	std::cout << "TESTING STACKED WEAPON: " << std::endl;
+	if (success8 == 1)
+	{
+		std::cout << CYN "PASSED" << std::endl;
+	}
+	else
+	{
+		std::cout << RED "FAILED" << std::endl;
+	}
+
 }
 
 int Test::test_shuffle()
@@ -221,7 +241,17 @@ int Test::test_diamond()
 
 int Test::test_club()
 {
-	return 0;
+	Player player1;
+	int success = 0;
+	Club test_club;
+	test_club.setSuit("Spades");
+	test_club.setValue("King");
+	player1.updatePlayer(test_club);
+	if (player1.getHealth() == 7)
+	{
+		success = 1;
+	}
+	return success;
 }
 
 int Test::test_heart()
@@ -245,7 +275,17 @@ int Test::test_heart()
 
 int Test::test_spade()
 {
-	return 0;
+	Player player1;
+	int success = 0;
+	Spade test_spade;
+	test_spade.setSuit("Spades");
+	test_spade.setValue("7");
+	player1.updatePlayer(test_spade);
+	if (player1.getHealth() == 13)
+	{
+		success = 1;
+	}
+	return success;
 }
 
 int Test::test_player_option()
