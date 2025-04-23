@@ -15,3 +15,6 @@ Diamonds (Weapons): Equip to boost your attacks (replacing your old weapon).
 Hearts (Potions): Heal up to your 20 HP maximum (one per turn).
 Clubs & Spades (Monsters): Fight either bare-handed or with your weapon—damage to you equals monster’s value minus your weapon’s value (or full value if unarmed).
 The game ends when your HP hits zero (your score is the negative sum of all remaining monsters) or you clear the deck (your score is your remaining HP).
+
+Video:
+https://youtu.be/oHSkSDu-knI
