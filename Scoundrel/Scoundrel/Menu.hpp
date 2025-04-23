@@ -23,8 +23,8 @@ class Menu
 {
 public:
 	Menu(const sf::Texture& Start, const sf::Texture& Info, const sf::Texture& Exit, const sf::Texture& Blank, 
-		const sf::Texture& Runbutton, sf::Sprite& losescreen, sf::Sprite& winscreens) : 
-		start(Start), info(Info), exit(Exit), pos1(Blank),pos2(Blank),pos3(Blank),pos4(Blank),run(Runbutton),fistfight(Runbutton), weaponfight(Runbutton), lostscreen(losescreen), winscreen(winscreens)
+		const sf::Texture& Runbutton, sf::Sprite& losescreen, sf::Sprite& winscreens, sf::Texture& fistbtn, sf::Texture& weaponbtn) : 
+		start(Start), info(Info), exit(Exit), pos1(Blank),pos2(Blank),pos3(Blank),pos4(Blank),run(Runbutton),fistfight(fistbtn), weaponfight(weaponbtn), lostscreen(losescreen), winscreen(winscreens)
 	{
 		start.getSprite().setPosition(sf::Vector2f(1920 / 2 - 150, 200));
 		start.activate();
@@ -39,17 +39,19 @@ public:
 		pos2.getSprite().setPosition(POSITION_2);
 		pos3.getSprite().setPosition(POSITION_3);
 		pos4.getSprite().setPosition(POSITION_4);
-		run.getSprite().setPosition(sf::Vector2f ((1920 / 2)-95, 575));
+		run.getSprite().setPosition(sf::Vector2f ((1920 / 2)-120, 475));
 		fistfight.getSprite().setPosition(sf::Vector2f(100, 800));
-		weaponfight.getSprite().setPosition(sf::Vector2f((1920 / 2) + 250, 800));
+		fistfight.getSprite().setPosition(sf::Vector2f((1920 / 2) - 500, 800));
+		weaponfight.getSprite().setPosition(sf::Vector2f((1920 / 2) + 250, 770));
 
 
 		pos1.getSprite().scale(sf::Vector2f(200.f/pos1.getSprite().getTexture().getSize().x, 300.f / pos1.getSprite().getTexture().getSize().y));
 		pos2.getSprite().scale(sf::Vector2f(200.f / pos1.getSprite().getTexture().getSize().x, 300.f / pos1.getSprite().getTexture().getSize().y));
 		pos3.getSprite().scale(sf::Vector2f(200.f / pos1.getSprite().getTexture().getSize().x, 300.f / pos1.getSprite().getTexture().getSize().y));
 		pos4.getSprite().scale(sf::Vector2f(200.f / pos1.getSprite().getTexture().getSize().x, 300.f / pos1.getSprite().getTexture().getSize().y));
-		run.getSprite().scale(sf::Vector2f(200.f / pos1.getSprite().getTexture().getSize().x, 300.f / pos1.getSprite().getTexture().getSize().y));
-//		fistfight.getSprite().scale(sf::Vector2f(200.f / pos1.getSprite().getTexture().getSize().x, 300.f / pos1.getSprite().getTexture().getSize().y));
+		run.getSprite().scale(sf::Vector2f(150.f / pos1.getSprite().getTexture().getSize().x, 200.f / pos1.getSprite().getTexture().getSize().y));
+		fistfight.getSprite().scale(sf::Vector2f(150.f / pos1.getSprite().getTexture().getSize().x, 200.f / pos1.getSprite().getTexture().getSize().y));
+		weaponfight.getSprite().scale(sf::Vector2f(135.f / pos1.getSprite().getTexture().getSize().x, 250.f / pos1.getSprite().getTexture().getSize().y));
 
 
 		lostscreen.setScale(sf::Vector2f(1.35, 1.1));
@@ -162,7 +164,8 @@ inline void Menu::rungame(sf::RenderWindow& theWindow, Deck &Playdeck)
 {
 	std::vector<ScreenButton> Cardslots = { pos1, pos2, pos3, pos4, run};
 	int count = 0;
-	
+	sf::Font font("ARIAL.TTF");
+	sf::Text text(font);
 
 	if (state == 1) // Ensure if you hold left click for too long it wont pick a card
 	{
@@ -473,6 +476,7 @@ inline void Menu::rungame(sf::RenderWindow& theWindow, Deck &Playdeck)
 		lost = true;
 		cardspicked = 0;
 		diamondweapon = false;
+		showrun = true;
 		stacked = false;
 		player1.setDamage(0);
 		player1.setWeapon(0);
@@ -498,6 +502,7 @@ inline void Menu::rungame(sf::RenderWindow& theWindow, Deck &Playdeck)
 	{
 		win = true;
 		cardspicked = 0;
+		showrun = true;
 		diamondweapon = false;
 		stacked = false;
 		player1.setDamage(0);
@@ -543,6 +548,15 @@ inline void Menu::rungame(sf::RenderWindow& theWindow, Deck &Playdeck)
 	}
 	else
 	{
+		int hp = player1.getHealth();
+		text.setString("Health: " + std::to_string(hp));
+		text.setCharacterSize(50);
+		text.setFillColor(sf::Color::Red);
+		text.setOutlineThickness(5);
+		text.setOutlineColor(sf::Color::Black);
+		text.setStyle(sf::Text::Bold);
+		text.setPosition(sf::Vector2f(50, 975));
+
 		if (stacked == true)
 		{
 			theWindow.draw(weaponstackcard);
@@ -555,6 +569,7 @@ inline void Menu::rungame(sf::RenderWindow& theWindow, Deck &Playdeck)
 		{
 			theWindow.draw(weaponfight);
 		}
+		theWindow.draw(text);
 		theWindow.draw(card1);
 		theWindow.draw(card2);
 		theWindow.draw(card3);
